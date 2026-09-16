@@ -260,6 +260,15 @@
   </keywords>
 
   <releases>
+    <release type="stable" version="1.1.1" date="2026-09-16">
+      <description>
+        <p>This patch hands the settings button to the desktop's icon theme and marks a pause with a stop.</p>
+        <ul>
+          <li>Draws the settings button with the desktop's own icon, so it matches every other applet whatever icon theme is installed, in place of the glyph compiled into the binary.</li>
+          <li>Marks a pause on the panel with a stop inside the ring, in place of the dashed ring, so a glance tells the reminders are held rather than merely faint.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="1.1.0" date="2026-09-16">
       <description>
         <ul>
