@@ -28,9 +28,22 @@ bundled! {
     person => "person-symbolic.svg",
     play => "play-symbolic.svg",
     posture => "posture-symbolic.svg",
-    settings => "settings-symbolic.svg",
     water => "water-symbolic.svg",
     wrists => "wrists-symbolic.svg",
+}
+
+macro_rules! named {
+    ($($name:ident => $icon:literal,)*) => {
+        $(
+            pub fn $name() -> widget::icon::Handle {
+                widget::icon::from_name($icon).handle()
+            }
+        )*
+    };
+}
+
+named! {
+    settings => "preferences-system-symbolic",
 }
 
 pub fn sized(handle: widget::icon::Handle, size: u16) -> widget::icon::Icon {
