@@ -225,9 +225,15 @@ Flatpak sandbox. They are additionally installed into the hicolor theme under
 `<app-id>-<kind>-symbolic`, because the notification daemon resolves `app_icon` by name and a
 reminder about your eyes should arrive with an eye on it.
 
-The paused variant of the panel icon is the same ring broken into nine dashes, at full opacity.
-It used to be the whole glyph dropped to 45% opacity, which on a translucent panel reads as a
-rendering fault rather than as a state.
+The paused variant of the panel icon is the same ring with a stop square inside it, at full
+opacity. It was a ring broken into nine dashes before that, and before that the whole glyph dropped
+to 45% opacity — which on a translucent panel reads as a rendering fault rather than as a state. A
+stop says held; a dashed outline only says faint.
+
+Everything that is not a reminder glyph comes from the icon theme by name: the settings button is
+`preferences-system-symbolic`, resolved through `icon::from_name`, so it matches the rest of the
+panel whatever theme the user has. The COSMIC theme is bundled in `com.system76.Cosmic.BaseApp`,
+which is what makes a named icon safe inside the Flatpak.
 
 ## Text that has to fit
 
