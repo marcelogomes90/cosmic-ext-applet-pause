@@ -36,6 +36,8 @@ nothing-scheduled-detail = Zapněte některou a začněte
 paused-title = Připomínky pozastaveny
 paused-until = Do { $time }
 paused-indefinitely = Dokud neobnovíte
+quiet-title = Nerušit je zapnuto
+quiet-detail = Připomenutí jsou pozastavena
 
 quick-actions = Rychlé akce
 action-done = Hotovo

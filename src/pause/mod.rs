@@ -13,7 +13,7 @@ use tokio::sync::{mpsc, watch};
 use tokio::task::JoinHandle;
 
 use crate::pause::clock::{Clock, GapDetector, SystemClock};
-use crate::pause::model::{NotifierState, ReminderKind, Settings, Snapshot};
+use crate::pause::model::{Moment, NotifierState, ReminderKind, Settings, Snapshot};
 use crate::pause::notify::{DroppingNotifier, Notifier, Request};
 use crate::pause::schedule::{Effect, Record, Schedule};
 
@@ -56,6 +56,7 @@ pub enum Command {
     PauseFor(Option<Duration>),
     Extend(Duration),
     Resume,
+    DoNotDisturb(bool),
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -322,9 +323,22 @@ where
             Command::PauseFor(span) => self.schedule.pause_for(now, span),
             Command::Extend(span) => self.schedule.extend(now, span),
             Command::Resume => self.schedule.resume(&self.settings, now),
+            Command::DoNotDisturb(quiet) => return self.quiet(quiet, now),
         };
 
         if changed {
+            self.store.store(&self.schedule.record());
+        }
+    }
+
+    fn quiet(&mut self, quiet: bool, now: Moment) {
+        if !self.schedule.set_quiet(&self.settings, now, quiet) {
+            return;
+        }
+
+        tracing::info!(quiet, "the desktop changed do not disturb");
+
+        if self.leader {
             self.store.store(&self.schedule.record());
         }
     }

@@ -22,6 +22,7 @@ the panel popup — there is no separate settings window.
 
 - Six reminders, each with its own interval
 - Pause everything for half an hour, an hour, or until you say otherwise
+- Reminders hold while the desktop is in Do Not Disturb and pick up where they left off
 - Nothing fires in a burst after the machine wakes from suspend or hibernation
 - Exactly one notification per reminder, even with the panel on several monitors
 - Twelve languages

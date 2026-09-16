@@ -36,6 +36,8 @@ nothing-scheduled-detail = Aktiviere eine, um zu beginnen
 paused-title = Erinnerungen pausiert
 paused-until = Bis { $time }
 paused-indefinitely = Bis du fortsetzt
+quiet-title = „Nicht stören“ ist an
+quiet-detail = Erinnerungen sind angehalten
 
 quick-actions = Schnellaktionen
 action-done = Erledigt

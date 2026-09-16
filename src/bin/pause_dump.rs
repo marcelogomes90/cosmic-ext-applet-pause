@@ -1,16 +1,17 @@
 use std::time::Duration;
 
-use cosmic_ext_applet_pause::config::{ConfigScheduleStore, SettingsStore};
+use cosmic_ext_applet_pause::config::{ConfigScheduleStore, DoNotDisturb, SettingsStore};
 use cosmic_ext_applet_pause::pause::model::{Moment, ReminderKind, Settings};
 use cosmic_ext_applet_pause::pause::notify::RecordingNotifier;
 use cosmic_ext_applet_pause::pause::schedule::{Effect, Schedule};
-use cosmic_ext_applet_pause::pause::{Builder, ScheduleStore};
+use cosmic_ext_applet_pause::pause::{Builder, Command, ScheduleStore};
 use cosmic_ext_applet_pause::{APP_ID, i18n, init_tracing, phrases};
 
 const USAGE: &str = "\
 usage: cosmic-ext-applet-pause-dump [command]
 
-  simulate [--hours N] [--suspend AT:FOR]   replay a timeline with no waiting (default)
+  simulate [--hours N] [--suspend AT:FOR] [--quiet AT:FOR]
+                                            replay a timeline with no waiting (default)
   watch [--seconds N] [--notify] [--elect]  follow the real scheduler and print every change
 ";
 
@@ -55,6 +56,7 @@ fn pair(words: &[&str], flag: &str) -> Option<(u64, u64)> {
 fn simulate(words: &[&str]) {
     let hours = number(words, "--hours").unwrap_or(3);
     let suspend = pair(words, "--suspend");
+    let quiet = pair(words, "--quiet");
 
     let settings = Settings::default();
     let start = Moment::from_epoch_seconds(1_700_000_000);
@@ -64,6 +66,9 @@ fn simulate(words: &[&str]) {
     println!("simulating {hours}h at one minute per step");
     if let Some((at, span)) = suspend {
         println!("the machine sleeps for {span} minutes after {at} minutes");
+    }
+    if let Some((at, span)) = quiet {
+        println!("do not disturb is on for {span} minutes after {at} minutes");
     }
     println!();
     print!("{:>7}  ", "time");
@@ -86,12 +91,26 @@ fn simulate(words: &[&str]) {
         }
 
         let now = start.saturating_add(Duration::from_mins(minute));
+
+        let quiet_event = quiet.and_then(|(at, span)| {
+            if minute == at {
+                schedule.set_quiet(&settings, now, true);
+                Some("do not disturb on".to_owned())
+            } else if minute == at + span {
+                schedule.set_quiet(&settings, now, false);
+                Some("do not disturb off".to_owned())
+            } else {
+                None
+            }
+        });
+
         let effects = schedule.advance(&settings, now, gap);
 
         let mut events: Vec<String> = Vec::new();
         if gap > Duration::ZERO {
             events.push(format!("woke after {} min asleep", gap.as_secs() / 60));
         }
+        events.extend(quiet_event);
         for effect in &effects {
             if let Effect::Fire(kind) = effect {
                 fired += 1;
@@ -101,8 +120,9 @@ fn simulate(words: &[&str]) {
 
         if !events.is_empty() || minute % 15 == 0 {
             print!("{minute:>6}m  ");
+            let reference = schedule.reference(now);
             for kind in ReminderKind::ALL {
-                let left = schedule.due_at(kind).saturating_duration_since(now);
+                let left = schedule.due_at(kind).saturating_duration_since(reference);
                 print!("{:>9}", format!("{}m", left.as_secs() / 60));
             }
             println!("   {}", events.join(", "));
@@ -162,6 +182,10 @@ fn watch(words: &[&str]) {
         builder.notifier(notifier.clone()).spawn(runtime.handle())
     };
 
+    let quiet = DoNotDisturb::load();
+    println!("do not disturb: {}", quiet.0);
+    handle.send(Command::DoNotDisturb(quiet.0));
+
     let mut snapshots = handle.subscribe();
     let inside = notifier.clone();
 
@@ -179,17 +203,21 @@ fn watch(words: &[&str]) {
                 )
                 .unwrap_or(i64::MAX),
             );
+            let reference = snapshot.reference(now);
             for reminder in &snapshot.reminders {
                 println!(
                     "  {:<8} {:>5}m left  enabled={} pending={}",
                     format!("{:?}", reminder.kind),
-                    reminder.remaining(now).as_secs() / 60,
+                    reminder.remaining(reference).as_secs() / 60,
                     reminder.setting.enabled,
                     reminder.pending,
                 );
             }
             if let Some(pause) = snapshot.pause {
                 println!("  paused since {:?}", pause.started_at);
+            }
+            if let Some(since) = snapshot.quiet_since {
+                println!("  do not disturb since {since:?}");
             }
             for request in inside.take() {
                 println!("  >> {} — {}", request.summary, request.body);

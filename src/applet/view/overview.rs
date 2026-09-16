@@ -7,8 +7,8 @@ use cosmic::widget;
 
 use crate::applet::message::Message;
 use crate::applet::view::{
-    FOOTER_RESERVE, GAP, GAP_TIGHT, HEADER_RESERVE, ICON, PAD, ROW_PAD, action, body_budget,
-    divider, header, kind_icon, scroll, section_title, settings_button,
+    CHIP_PAD, FOOTER_RESERVE, GAP, GAP_TIGHT, HEADER_RESERVE, ICON, PAD, ROW_PAD, action,
+    body_budget, divider, header, kind_icon, scroll, section_title, settings_button,
 };
 use crate::applet::{Pause, style, symbols};
 use crate::pause::model::{Moment, Reminder, Snapshot};
@@ -17,7 +17,7 @@ use crate::{fl, format, phrases};
 pub fn page(app: &Pause) -> Element<'_, Message> {
     let snapshot = app.snapshot();
 
-    let children: Vec<Element<'_, Message>> = vec![
+    let mut children: Vec<Element<'_, Message>> = vec![
         header(fl!("app-title"), fl!("app-tagline"), settings_button()),
         status(snapshot, snapshot.reference(app.now())),
         divider(),
@@ -25,10 +25,13 @@ pub fn page(app: &Pause) -> Element<'_, Message> {
             .max_height(body_budget(HEADER_RESERVE + FOOTER_RESERVE + 200.0))
             .into(),
         reset_timers(),
-        divider(),
-        section_title(fl!("quick-actions")),
-        quick_actions(snapshot),
     ];
+
+    if !held_by_the_desktop(snapshot) {
+        children.push(divider());
+        children.push(section_title(fl!("quick-actions")));
+        children.push(quick_actions(snapshot));
+    }
 
     widget::column::with_children(children)
         .spacing(GAP + GAP_TIGHT)
@@ -36,8 +39,14 @@ pub fn page(app: &Pause) -> Element<'_, Message> {
         .into()
 }
 
+fn held_by_the_desktop(snapshot: &Snapshot) -> bool {
+    snapshot.is_quiet() && snapshot.pause.is_none()
+}
+
 fn status(snapshot: &Snapshot, now: Moment) -> Element<'_, Message> {
-    let (icon, headline, detail) = if let Some(pause) = snapshot.pause {
+    let (icon, headline, detail) = if held_by_the_desktop(snapshot) {
+        (symbols::moon(), fl!("quiet-title"), fl!("quiet-detail"))
+    } else if let Some(pause) = snapshot.pause {
         let until = pause.until.map_or_else(
             || fl!("paused-indefinitely"),
             |until| fl!("paused-until", time = format::clock(until)),
@@ -121,11 +130,13 @@ fn row<'a>(reminder: &Reminder, now: Moment, paused: bool) -> Element<'a, Messag
     let enabled = reminder.setting.enabled;
     let lively = enabled && !paused;
 
-    let glyph = symbols::sized(kind_icon(kind), ICON).class(if lively {
+    let glyph = widget::container(symbols::sized(kind_icon(kind), ICON).class(if lively {
         style::accent_icon()
     } else {
         style::dimmed_icon()
-    });
+    }))
+    .padding(CHIP_PAD)
+    .style(move |theme| style::chip(theme, lively));
 
     let words = widget::column::with_children(vec![
         widget::text::body(phrases::name(kind))
@@ -238,4 +249,39 @@ fn quick_actions(snapshot: &Snapshot) -> Element<'_, Message> {
         .padding([0, PAD])
         .width(Length::Fill)
         .into()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::pause::model::PauseRecord;
+
+    fn quiet_at(seconds: i64) -> Snapshot {
+        Snapshot {
+            quiet_since: Some(Moment::from_epoch_seconds(seconds)),
+            ..Snapshot::default()
+        }
+    }
+
+    #[test]
+    fn quiet_that_came_from_the_desktop_offers_nothing_to_resume() {
+        assert!(held_by_the_desktop(&quiet_at(1_700_000_000)));
+        assert!(!held_by_the_desktop(&Snapshot::default()));
+    }
+
+    #[test]
+    fn a_pause_the_user_chose_keeps_its_own_controls_under_do_not_disturb() {
+        let snapshot = Snapshot {
+            pause: Some(PauseRecord {
+                started_at: Moment::from_epoch_seconds(1_700_000_100),
+                until: None,
+            }),
+            ..quiet_at(1_700_000_000)
+        };
+
+        assert!(
+            !held_by_the_desktop(&snapshot),
+            "the user must still be able to take their own pause back"
+        );
+    }
 }

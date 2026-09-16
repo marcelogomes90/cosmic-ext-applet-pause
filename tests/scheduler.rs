@@ -237,6 +237,42 @@ async fn resuming_lets_the_reminders_through_again() {
 }
 
 #[tokio::test(start_paused = true)]
+async fn a_desktop_that_asked_for_quiet_is_left_alone_until_it_changes_its_mind() {
+    let notifier = RecordingNotifier::default();
+    let (handle, _events, _join) = Builder::new(
+        MemoryScheduleStore::default(),
+        Plain,
+        short(ReminderKind::Eyes, 1),
+    )
+    .clock(VirtualClock::default())
+    .notifier(notifier.clone())
+    .spawn(&tokio::runtime::Handle::current());
+
+    let mut snapshots = handle.subscribe();
+    handle.send(Command::DoNotDisturb(true));
+    wait_for(
+        &mut snapshots,
+        "do not disturb to take hold",
+        Snapshot::is_quiet,
+    )
+    .await;
+    tokio::time::sleep(Duration::from_mins(10)).await;
+
+    assert!(
+        notifier.delivered().is_empty(),
+        "ten minutes of do not disturb owed the user nothing"
+    );
+
+    handle.send(Command::DoNotDisturb(false));
+    wait_for(&mut snapshots, "a reminder once the quiet lifts", |s| {
+        !s.is_quiet() && s.reminders.iter().any(|reminder| reminder.pending)
+    })
+    .await;
+
+    assert_eq!(notifier.kinds(), vec![ReminderKind::Eyes]);
+}
+
+#[tokio::test(start_paused = true)]
 async fn clicking_the_notification_clears_the_badge_it_left_behind() {
     let (handle, events, _join) = Builder::new(
         MemoryScheduleStore::default(),

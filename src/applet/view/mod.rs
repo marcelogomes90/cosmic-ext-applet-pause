@@ -19,6 +19,7 @@ pub const GAP_TIGHT: u16 = 4;
 pub const ROW_PAD: u16 = 10;
 pub const CONTROL_HEIGHT: u16 = 32;
 pub const ICON: u16 = 16;
+pub const CHIP_PAD: u16 = 6;
 pub const ICON_SMALL: u16 = 14;
 pub const HEADER_RESERVE: f32 = 76.0;
 pub const PAGE_HEADER_RESERVE: f32 = 64.0;

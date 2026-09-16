@@ -36,6 +36,8 @@ nothing-scheduled-detail = Attivane uno per iniziare
 paused-title = Promemoria in pausa
 paused-until = Fino alle { $time }
 paused-indefinitely = Finché non riprendi
+quiet-title = Non disturbare è attivo
+quiet-detail = I promemoria sono in attesa
 
 quick-actions = Azioni rapide
 action-done = Fatto

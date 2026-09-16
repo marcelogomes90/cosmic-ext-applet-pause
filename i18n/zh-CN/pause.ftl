@@ -36,6 +36,8 @@ nothing-scheduled-detail = 启用一项以开始
 paused-title = 提醒已暂停
 paused-until = 直到 { $time }
 paused-indefinitely = 直到你恢复
+quiet-title = 勿扰模式已开启
+quiet-detail = 提醒已暂停
 
 quick-actions = 快捷操作
 action-done = 完成

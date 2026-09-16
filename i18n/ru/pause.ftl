@@ -36,6 +36,8 @@ nothing-scheduled-detail = Включите одно, чтобы начать
 paused-title = Напоминания приостановлены
 paused-until = До { $time }
 paused-indefinitely = Пока вы не возобновите
+quiet-title = Режим «Не беспокоить» включён
+quiet-detail = Напоминания приостановлены
 
 quick-actions = Быстрые действия
 action-done = Готово

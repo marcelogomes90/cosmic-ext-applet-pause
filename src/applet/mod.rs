@@ -61,6 +61,7 @@ impl Pause {
     fn open_popup(&mut self) -> Task<Message> {
         let id = window::Id::unique();
         self.popup = PopupState::Open { id, closing: false };
+        self.now = subscription::now();
 
         let parent = self
             .core
@@ -140,9 +141,7 @@ impl Pause {
 }
 
 fn panel_icon(snapshot: &Snapshot) -> widget::icon::Handle {
-    if snapshot.first_pending().is_some() {
-        symbols::panel_due()
-    } else if snapshot.is_paused() {
+    if snapshot.is_paused() {
         symbols::panel_paused()
     } else {
         symbols::panel()
@@ -206,6 +205,7 @@ impl Application for Pause {
             subscription::snapshots(&self.scheduler),
             subscription::settings(),
             subscription::schedule(),
+            subscription::do_not_disturb(),
         ];
 
         if self.popup != PopupState::Closed {
@@ -242,6 +242,7 @@ impl Application for Pause {
                 self.scheduler.send(Command::Schedule(record));
                 Task::none()
             }
+            Message::DoNotDisturbChanged(quiet) => self.command(Command::DoNotDisturb(quiet)),
             Message::Tick => {
                 self.now = subscription::now();
                 Task::none()
@@ -313,6 +314,42 @@ mod tests {
 
         assert!(reconcile_surface_closed(id, &mut state));
         assert_eq!(state, PopupState::Closed);
+    }
+
+    #[test]
+    fn a_reminder_coming_due_leaves_the_panel_icon_alone() {
+        use crate::pause::model::{Reminder, ReminderKind, ReminderSetting};
+
+        let face = |snapshot: &Snapshot| format!("{:?}", panel_icon(snapshot).data);
+
+        let resting = Snapshot::default();
+        let due = Snapshot {
+            reminders: vec![Reminder {
+                kind: ReminderKind::Eyes,
+                setting: ReminderSetting {
+                    enabled: true,
+                    interval_secs: 20 * 60,
+                },
+                due_at: Moment::EPOCH,
+                pending: true,
+            }],
+            ..Snapshot::default()
+        };
+        let frozen = Snapshot {
+            quiet_since: Some(Moment::from_epoch_seconds(1_700_000_000)),
+            ..Snapshot::default()
+        };
+
+        assert_eq!(
+            face(&due),
+            face(&resting),
+            "the notification is the announcement, the panel is not"
+        );
+        assert_ne!(
+            face(&frozen),
+            face(&resting),
+            "but a frozen schedule has to be visible at a glance"
+        );
     }
 
     #[test]

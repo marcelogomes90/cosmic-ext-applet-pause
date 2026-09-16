@@ -36,6 +36,8 @@ nothing-scheduled-detail = Activa uno para empezar
 paused-title = Recordatorios en pausa
 paused-until = Hasta las { $time }
 paused-indefinitely = Hasta que reanudes
+quiet-title = No molestar activado
+quiet-detail = Los recordatorios están en espera
 
 quick-actions = Acciones rápidas
 action-done = Hecho

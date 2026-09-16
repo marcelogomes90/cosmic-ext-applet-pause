@@ -36,6 +36,8 @@ nothing-scheduled-detail = Zet er een aan om te beginnen
 paused-title = Herinneringen gepauzeerd
 paused-until = Tot { $time }
 paused-indefinitely = Tot je hervat
+quiet-title = Niet storen staat aan
+quiet-detail = Herinneringen staan stil
 
 quick-actions = Snelle acties
 action-done = Klaar

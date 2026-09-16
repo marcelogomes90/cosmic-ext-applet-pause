@@ -8,6 +8,64 @@ pub const SNOOZE_KEY: &str = "snooze-secs";
 pub const NOTIFICATION_KEY: &str = "notification-secs";
 pub const PAUSE_KEY: &str = "pause";
 
+pub const NOTIFICATIONS_APP_ID: &str = "com.system76.CosmicNotifications";
+pub const NOTIFICATIONS_VERSION: u64 = 1;
+pub const DO_NOT_DISTURB_KEY: &str = "do_not_disturb";
+
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct DoNotDisturb(pub bool);
+
+impl DoNotDisturb {
+    pub fn load() -> Self {
+        let Some(config) = Config::new(NOTIFICATIONS_APP_ID, NOTIFICATIONS_VERSION).ok() else {
+            return Self::default();
+        };
+
+        Self::get_entry(&config).unwrap_or_else(|(_, quiet)| quiet)
+    }
+}
+
+impl CosmicConfigEntry for DoNotDisturb {
+    const VERSION: u64 = NOTIFICATIONS_VERSION;
+
+    fn write_entry(&self, _config: &Config) -> Result<(), Error> {
+        Ok(())
+    }
+
+    fn get_entry(config: &Config) -> Result<Self, (Vec<Error>, Self)> {
+        match config.get::<bool>(DO_NOT_DISTURB_KEY) {
+            Ok(quiet) => Ok(Self(quiet)),
+            Err(error) => Err((vec![error], Self::default())),
+        }
+    }
+
+    fn update_keys<T: AsRef<str>>(
+        &mut self,
+        config: &Config,
+        changed_keys: &[T],
+    ) -> (Vec<Error>, Vec<&'static str>) {
+        let mut errors = Vec::new();
+        let mut updated = Vec::new();
+
+        for key in changed_keys {
+            if key.as_ref() != DO_NOT_DISTURB_KEY {
+                continue;
+            }
+
+            match config.get::<bool>(DO_NOT_DISTURB_KEY) {
+                Ok(quiet) if self.0 != quiet => {
+                    self.0 = quiet;
+                    updated.push(DO_NOT_DISTURB_KEY);
+                }
+                Ok(_) => {}
+                Err(error) => errors.push(error),
+            }
+        }
+
+        (errors, updated)
+    }
+}
+
 impl CosmicConfigEntry for Settings {
     const VERSION: u64 = CONFIG_VERSION;
 
@@ -409,6 +467,38 @@ mod tests {
             "one per key that has never been written"
         );
         assert_eq!(settings, Settings::default());
+
+        let _ = std::fs::remove_dir_all(path);
+    }
+
+    #[test]
+    fn do_not_disturb_is_read_from_whatever_the_desktop_last_wrote() {
+        let (path, config) = temporary("do-not-disturb");
+
+        let (errors, quiet) = DoNotDisturb::get_entry(&config).expect_err("nothing is stored yet");
+        assert_eq!(errors.len(), 1);
+        assert_eq!(
+            quiet,
+            DoNotDisturb(false),
+            "a desktop that never said so is not asking for quiet"
+        );
+
+        config
+            .set(DO_NOT_DISTURB_KEY, true)
+            .expect("the key can be written");
+        let mut current = DoNotDisturb::get_entry(&config).expect("the key is there now");
+        assert_eq!(current, DoNotDisturb(true));
+
+        let (_, updated) = current.update_keys(&config, &[DO_NOT_DISTURB_KEY]);
+        assert!(updated.is_empty(), "a value that has not moved is not news");
+
+        config
+            .set(DO_NOT_DISTURB_KEY, false)
+            .expect("the key can be written");
+        let (_, updated) = current.update_keys(&config, &[DO_NOT_DISTURB_KEY]);
+
+        assert_eq!(updated, vec![DO_NOT_DISTURB_KEY]);
+        assert_eq!(current, DoNotDisturb(false));
 
         let _ = std::fs::remove_dir_all(path);
     }

@@ -36,6 +36,8 @@ nothing-scheduled-detail = Turn one on to get started
 paused-title = Reminders paused
 paused-until = Until { $time }
 paused-indefinitely = Until you resume
+quiet-title = Do Not Disturb is on
+quiet-detail = Reminders are on hold
 
 quick-actions = Quick actions
 action-done = Done

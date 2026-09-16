@@ -69,9 +69,22 @@ fifteen.
 
 **Time that passed while you were away is time that passed.** See below.
 
-**The badge retires itself.** `pending_until` is a moment, not a flag. The panel icon shows
-the due mark for two minutes and then goes back on its own, without the user having to
-acknowledge anything. `retire_badges` runs at the top of every `advance`.
+**The panel has two faces, not three.** Running, and frozen. An earlier version lit a filled
+circle for two minutes whenever a reminder came due, so one nudge arrived twice: the notification
+said it, and then the panel icon changed shape underneath it. The notification is the
+announcement. `pending_until` stays as the record of a reminder that has been answered, and
+`retire_badges` still clears it after two minutes at the top of every `advance` so nothing
+accumulates, but it no longer paints anything.
+
+**A frozen countdown is read from the moment it froze.** While the reminders are held — by a
+pause the user asked for, or by the desktop's Do Not Disturb — the remaining time is measured
+against the start of the freeze, not against the present. Everything that writes a moment has to
+use that same anchor, or the two halves disagree: `restart_all` once wrote `now + interval` while
+the popup read the remainder from the start of the pause, so resetting the timers ten minutes
+into a pause showed every countdown ten minutes too long. `start` was worse, because a panel
+restart during a long pause decided the reminders were hours late and handed back whole intervals
+instead of the minutes that were actually left. `restart_all`, `start` and `rebase_stale` all go
+through `Schedule::reference`, and `thaw` gives the frozen span back on the way out.
 
 ## Suspend, hibernate, and the clock
 
@@ -139,6 +152,29 @@ Disturb, which is the wrong trade for a nudge to drink water.
 tokio worker. A `zbus` proxy is less code and gives one stream for `ActionInvoked` and
 `NotificationClosed`.
 
+## Do Not Disturb
+
+`cosmic-notifications` does exactly one thing with `do_not_disturb`: it skips creating the banner
+surface. The notification is still accepted, still kept, and still handed to the notification
+list, so a reminder sent into a quiet desktop is spent without ever being seen. Pause therefore
+reads the flag itself — `com.system76.CosmicNotifications` version 1, key `do_not_disturb`,
+through the same cosmic-config subscription the applet already uses for its own keys, and with no
+new Flatpak permission because `--filesystem=xdg-config/cosmic` is already granted — and freezes,
+exactly the way a pause does.
+
+Two freezes can overlap, and they share one anchor. `Schedule::anchor` is the earlier of the
+pause's `started_at` and `quiet_since`, and when one of them ends while the other is still on, the
+survivor inherits that anchor instead of restarting the clock. Without that, the minutes between
+the two starts would vanish from every countdown.
+
+The quiet state is never persisted. It is a fact about the machine that every instance reads for
+itself, so only the leader writes the thawed schedule; the followers work out the same moments and
+adopt the leader's record on the next tick.
+
+A pause the user chose keeps its own controls. When only the desktop is asking for quiet there is
+nothing to resume, so the quick actions are hidden and the card says why — offering a Resume
+button that the next tick would undo is a lie.
+
 ## Layer boundaries
 
 `src/pause/` must never import `cosmic::` or `iced::`. It may use tokio and zbus. This is what
@@ -166,6 +202,14 @@ stacked, and the frosted panel setting had no visible effect because the opaque 
 on top of it. The popup now paints itself, the way Clip Keep does, and reads `theme.transparent`
 so frosted works.
 
+The popup ticks only while it is open — a panel applet has no business waking once a second to
+repaint something nobody is looking at. That leaves `now` stale between openings, and the first
+frame after a click was being drawn against whatever the clock said when the popup last closed:
+open it an hour later and every countdown read an hour too long, then snapped when the first tick
+landed a second later. On a second monitor it looked worse, because that instance may not have had
+its popup open all day. `open_popup` re-reads the clock before the surface is built, so the first
+frame is already right.
+
 Colour comes from the theme, never from a literal. The reminder icons use the accent when they
 are live and dimmed ink when they are off or paused. Buttons use `Button::Suggested` and
 `Button::Standard` rather than hand mixed pairs: pairing `accent_color` with `on_accent_color`
@@ -181,9 +225,9 @@ Flatpak sandbox. They are additionally installed into the hicolor theme under
 `<app-id>-<kind>-symbolic`, because the notification daemon resolves `app_icon` by name and a
 reminder about your eyes should arrive with an eye on it.
 
-Symbolic icons are recoloured to a single colour, so a knocked-out shape needs a mask rather
-than a second fill — the due variant of the panel icon is a filled circle with the pause bars
-masked out.
+The paused variant of the panel icon is the same ring broken into nine dashes, at full opacity.
+It used to be the whole glyph dropped to 45% opacity, which on a translucent panel reads as a
+rendering fault rather than as a state.
 
 ## Text that has to fit
 

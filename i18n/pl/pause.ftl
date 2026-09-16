@@ -36,6 +36,8 @@ nothing-scheduled-detail = Włącz jedno, aby zacząć
 paused-title = Przypomnienia wstrzymane
 paused-until = Do { $time }
 paused-indefinitely = Do czasu wznowienia
+quiet-title = Nie przeszkadzać jest włączone
+quiet-detail = Przypomnienia są wstrzymane
 
 quick-actions = Szybkie akcje
 action-done = Gotowe

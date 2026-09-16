@@ -29,6 +29,7 @@ pub struct Record {
 pub struct Schedule {
     record: Record,
     settle_until: Option<Moment>,
+    quiet_since: Option<Moment>,
 }
 
 impl Schedule {
@@ -36,6 +37,7 @@ impl Schedule {
         Self {
             record,
             settle_until: None,
+            quiet_since: None,
         }
     }
 
@@ -45,6 +47,29 @@ impl Schedule {
 
     pub fn pause(&self) -> Option<PauseRecord> {
         self.record.pause
+    }
+
+    pub fn quiet_since(&self) -> Option<Moment> {
+        self.quiet_since
+    }
+
+    pub fn is_frozen(&self) -> bool {
+        self.anchor().is_some()
+    }
+
+    fn anchor(&self) -> Option<Moment> {
+        match (
+            self.record.pause.map(|pause| pause.started_at),
+            self.quiet_since,
+        ) {
+            (Some(pause), Some(quiet)) => Some(pause.min(quiet)),
+            (Some(moment), None) | (None, Some(moment)) => Some(moment),
+            (None, None) => None,
+        }
+    }
+
+    pub fn reference(&self, now: Moment) -> Moment {
+        self.anchor().map_or(now, |since| since.min(now))
     }
 
     pub fn due_at(&self, kind: ReminderKind) -> Moment {
@@ -73,6 +98,7 @@ impl Schedule {
                 })
                 .collect(),
             pause: self.record.pause,
+            quiet_since: self.quiet_since,
             leader,
             notifier: crate::pause::model::NotifierState::default(),
             revision,
@@ -90,6 +116,7 @@ impl Schedule {
 
     pub fn start(&mut self, settings: &Settings, now: Moment) -> bool {
         let mut changed = false;
+        let now = self.reference(now);
 
         for kind in ReminderKind::ALL {
             let interval = settings.interval(kind);
@@ -175,7 +202,40 @@ impl Schedule {
             return false;
         };
 
-        let slept = now.saturating_duration_since(pause.started_at);
+        if let Some(quiet) = self.quiet_since {
+            self.quiet_since = Some(quiet.min(pause.started_at));
+            return true;
+        }
+
+        self.thaw(settings, now, pause.started_at);
+        true
+    }
+
+    pub fn set_quiet(&mut self, settings: &Settings, now: Moment, quiet: bool) -> bool {
+        if quiet {
+            if self.quiet_since.is_some() {
+                return false;
+            }
+
+            self.quiet_since = Some(now);
+            return true;
+        }
+
+        let Some(since) = self.quiet_since.take() else {
+            return false;
+        };
+
+        if let Some(pause) = self.record.pause.as_mut() {
+            pause.started_at = pause.started_at.min(since);
+            return true;
+        }
+
+        self.thaw(settings, now, since);
+        true
+    }
+
+    fn thaw(&mut self, settings: &Settings, now: Moment, since: Moment) {
+        let frozen = now.saturating_duration_since(since);
 
         for kind in ReminderKind::ALL {
             let index = kind.index();
@@ -184,11 +244,9 @@ impl Schedule {
             let high = now.saturating_add(interval);
 
             self.record.due[index] = self.record.due[index]
-                .saturating_add(slept)
+                .saturating_add(frozen)
                 .clamp_between(low, high);
         }
-
-        true
     }
 
     pub fn done(&mut self, kind: ReminderKind) -> bool {
@@ -228,6 +286,7 @@ impl Schedule {
 
     pub fn restart_all(&mut self, settings: &Settings, now: Moment) -> bool {
         let mut changed = false;
+        let now = self.reference(now);
 
         for kind in ReminderKind::ALL {
             changed |= self.reset(kind.index(), now.saturating_add(settings.interval(kind)));
@@ -246,7 +305,7 @@ impl Schedule {
     pub fn next_wake(&self, settings: &Settings, now: Moment) -> Moment {
         let heartbeat = now.saturating_add(HEARTBEAT);
 
-        if self.record.pause.is_some() {
+        if self.is_frozen() {
             let expiry = self
                 .record
                 .pause
@@ -281,7 +340,7 @@ impl Schedule {
             changed |= self.resume(settings, now);
         }
 
-        if self.record.pause.is_some() {
+        if self.is_frozen() {
             if changed {
                 effects.push(Effect::Persist);
             }
@@ -332,6 +391,7 @@ impl Schedule {
 
     fn rebase_stale(&mut self, settings: &Settings, now: Moment) -> bool {
         let mut changed = false;
+        let now = self.reference(now);
 
         for kind in ReminderKind::ALL {
             let index = kind.index();
@@ -899,6 +959,125 @@ mod tests {
         let schedule = started(&settings);
 
         assert_eq!(schedule.next_wake(&settings, at(19 * 60 + 50)), at(20 * 60));
+    }
+
+    #[test]
+    fn restarting_the_timers_while_paused_hands_back_whole_intervals() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+        schedule.pause_for(at(0), None);
+
+        schedule.restart_all(&settings, at(15 * 60));
+
+        assert_eq!(
+            schedule.due_at(ReminderKind::Eyes),
+            at(20 * 60),
+            "a frozen countdown is read from the moment it froze, not from the present"
+        );
+
+        schedule.resume(&settings, at(30 * 60));
+
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(50 * 60));
+    }
+
+    #[test]
+    fn a_restart_in_the_middle_of_a_pause_keeps_the_time_that_was_left() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+        schedule.pause_for(at(5 * 60), None);
+
+        let mut restarted = Schedule::from_record(schedule.record());
+        restarted.start(&settings, at(65 * 60));
+
+        assert_eq!(
+            restarted.due_at(ReminderKind::Eyes),
+            at(20 * 60),
+            "an hour of pause must not look like an hour of being late"
+        );
+
+        restarted.resume(&settings, at(65 * 60));
+
+        assert_eq!(
+            restarted.due_at(ReminderKind::Eyes),
+            at(80 * 60),
+            "the fifteen minutes that were left are still fifteen minutes"
+        );
+    }
+
+    #[test]
+    fn a_gap_that_lands_inside_a_pause_does_not_move_the_countdowns() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+        schedule.pause_for(at(0), None);
+
+        schedule.advance(&settings, at(3 * 60 * 60), Duration::from_hours(3));
+
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(20 * 60));
+    }
+
+    #[test]
+    fn do_not_disturb_freezes_everything_the_way_a_pause_does() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+
+        assert!(schedule.set_quiet(&settings, at(0), true));
+        assert!(schedule.is_frozen());
+        assert!(!schedule.set_quiet(&settings, at(60), true));
+
+        let effects = schedule.advance(&settings, at(30 * 60), Duration::ZERO);
+
+        assert!(
+            fired(&effects).is_empty(),
+            "nothing may reach a desktop that asked for quiet"
+        );
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(20 * 60));
+
+        assert!(schedule.set_quiet(&settings, at(30 * 60), false));
+
+        assert_eq!(
+            schedule.due_at(ReminderKind::Eyes),
+            at(50 * 60),
+            "the twenty minutes that were left come back whole"
+        );
+    }
+
+    #[test]
+    fn a_pause_that_runs_out_while_do_not_disturb_is_on_stays_frozen() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+        schedule.pause_for(at(0), Some(minutes(30)));
+        schedule.set_quiet(&settings, at(10 * 60), true);
+
+        schedule.advance(&settings, at(30 * 60), Duration::ZERO);
+
+        assert!(schedule.pause().is_none(), "the pause itself ran out");
+        assert!(schedule.is_frozen(), "but the desktop is still quiet");
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(20 * 60));
+
+        schedule.set_quiet(&settings, at(40 * 60), false);
+
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(60 * 60));
+    }
+
+    #[test]
+    fn leaving_do_not_disturb_during_a_pause_hands_the_freeze_to_the_pause() {
+        let settings = only(&[ReminderKind::Eyes]);
+        let mut schedule = started(&settings);
+        schedule.set_quiet(&settings, at(0), true);
+        schedule.pause_for(at(10 * 60), None);
+
+        schedule.set_quiet(&settings, at(20 * 60), false);
+
+        assert!(schedule.is_frozen());
+        assert_eq!(schedule.due_at(ReminderKind::Eyes), at(20 * 60));
+
+        schedule.resume(&settings, at(30 * 60));
+
+        assert_eq!(
+            schedule.due_at(ReminderKind::Eyes),
+            at(50 * 60),
+            "the quiet minutes before the pause were frozen too"
+        );
     }
 
     #[test]

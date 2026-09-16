@@ -36,6 +36,8 @@ nothing-scheduled-detail = Увімкніть одне, щоб почати
 paused-title = Нагадування призупинено
 paused-until = До { $time }
 paused-indefinitely = Доки ви не відновите
+quiet-title = Режим «Не турбувати» увімкнено
+quiet-detail = Нагадування призупинено
 
 quick-actions = Швидкі дії
 action-done = Готово

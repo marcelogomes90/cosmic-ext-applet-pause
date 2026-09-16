@@ -55,6 +55,32 @@ pub fn highlight(theme: &cosmic::Theme) -> widget::container::Style {
     }
 }
 
+pub fn chip(theme: &cosmic::Theme, lively: bool) -> widget::container::Style {
+    let cosmic = theme.cosmic();
+
+    let tint = if lively {
+        Color::from(cosmic.accent_color())
+    } else {
+        Color::from(cosmic.on_bg_color())
+    };
+
+    widget::container::Style {
+        text_color: None,
+        icon_color: None,
+        background: Some(Background::Color(with_alpha(
+            tint,
+            if lively { 0.16 } else { 0.07 },
+        ))),
+        border: Border {
+            radius: cosmic.corner_radii.radius_s.into(),
+            width: 0.0,
+            color: Color::TRANSPARENT,
+        },
+        shadow: Shadow::default(),
+        snap: true,
+    }
+}
+
 pub fn quiet() -> cosmic::theme::Button {
     neutral_button(false)
 }

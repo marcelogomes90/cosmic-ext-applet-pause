@@ -25,7 +25,6 @@ bundled! {
     moon => "moon-symbolic.svg",
     r#move => "move-symbolic.svg",
     panel => "panel-symbolic.svg",
-    panel_due => "panel-due-symbolic.svg",
     panel_paused => "panel-paused-symbolic.svg",
     pause => "pause-symbolic.svg",
     person => "person-symbolic.svg",

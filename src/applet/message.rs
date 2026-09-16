@@ -13,6 +13,7 @@ pub enum Message {
     Snapshot(Arc<Snapshot>),
     SettingsChanged(Box<Settings>),
     ScheduleChanged(Box<Record>),
+    DoNotDisturbChanged(bool),
     Tick,
     ShowSettings(bool),
     Toggle(ReminderKind, bool),

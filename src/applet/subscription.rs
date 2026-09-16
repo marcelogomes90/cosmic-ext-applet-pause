@@ -60,6 +60,15 @@ pub fn schedule() -> Subscription<Message> {
     .map(|update| Message::ScheduleChanged(Box::new(update.config)))
 }
 
+pub fn do_not_disturb() -> Subscription<Message> {
+    cosmic::cosmic_config::config_subscription::<_, crate::config::DoNotDisturb>(
+        "cosmic-ext-applet-pause-do-not-disturb",
+        crate::config::NOTIFICATIONS_APP_ID.into(),
+        crate::config::NOTIFICATIONS_VERSION,
+    )
+    .map(|update| Message::DoNotDisturbChanged(update.config.0))
+}
+
 pub fn tick() -> Subscription<Message> {
     cosmic::iced::time::every(UI_TICK).map(|_| Message::Tick)
 }

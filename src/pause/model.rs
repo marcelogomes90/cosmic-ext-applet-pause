@@ -260,6 +260,7 @@ pub enum NotifierState {
 pub struct Snapshot {
     pub reminders: Vec<Reminder>,
     pub pause: Option<PauseRecord>,
+    pub quiet_since: Option<Moment>,
     pub leader: bool,
     pub notifier: NotifierState,
     pub revision: u64,
@@ -273,23 +274,30 @@ impl Snapshot {
             .min_by_key(|reminder| reminder.due_at)
     }
 
-    pub fn first_pending(&self) -> Option<&Reminder> {
-        self.reminders
-            .iter()
-            .find(|reminder| reminder.pending && reminder.setting.enabled)
+    pub fn is_paused(&self) -> bool {
+        self.anchor().is_some()
     }
 
-    pub fn is_paused(&self) -> bool {
-        self.pause.is_some()
+    pub fn is_quiet(&self) -> bool {
+        self.quiet_since.is_some()
     }
 
     pub fn reference(&self, now: Moment) -> Moment {
-        self.pause.map_or(now, |pause| pause.started_at.min(now))
+        self.anchor().map_or(now, |since| since.min(now))
+    }
+
+    fn anchor(&self) -> Option<Moment> {
+        match (self.pause.map(|pause| pause.started_at), self.quiet_since) {
+            (Some(pause), Some(quiet)) => Some(pause.min(quiet)),
+            (Some(moment), None) | (None, Some(moment)) => Some(moment),
+            (None, None) => None,
+        }
     }
 
     pub fn same_state(&self, other: &Self) -> bool {
         self.reminders == other.reminders
             && self.pause == other.pause
+            && self.quiet_since == other.quiet_since
             && self.leader == other.leader
             && self.notifier == other.notifier
     }
@@ -395,6 +403,42 @@ mod tests {
         assert_eq!(Snapshot::default().reference(now), now);
     }
 
+    #[test]
+    fn a_countdown_held_by_do_not_disturb_is_frozen_just_like_a_paused_one() {
+        let quiet_at = Moment::from_epoch_seconds(1_700_000_000);
+        let snapshot = Snapshot {
+            quiet_since: Some(quiet_at),
+            ..Snapshot::default()
+        };
+
+        let much_later = quiet_at.saturating_add(Duration::from_hours(3));
+
+        assert_eq!(snapshot.reference(much_later), quiet_at);
+        assert!(
+            snapshot.is_paused(),
+            "the panel shows the same resting state"
+        );
+        assert!(snapshot.is_quiet());
+    }
+
+    #[test]
+    fn two_freezes_at_once_are_measured_from_whichever_came_first() {
+        let quiet_at = Moment::from_epoch_seconds(1_700_000_000);
+        let paused_at = quiet_at.saturating_add(Duration::from_mins(10));
+        let snapshot = Snapshot {
+            quiet_since: Some(quiet_at),
+            pause: Some(PauseRecord {
+                started_at: paused_at,
+                until: None,
+            }),
+            ..Snapshot::default()
+        };
+
+        assert_eq!(
+            snapshot.reference(paused_at.saturating_add(Duration::from_hours(1))),
+            quiet_at
+        );
+    }
     #[test]
     fn an_impossible_clamp_range_settles_on_the_lower_bound() {
         let low = Moment::from_epoch_seconds(100);
