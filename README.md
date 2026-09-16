@@ -26,20 +26,24 @@ the panel popup — there is no separate settings window.
 - Exactly one notification per reminder, even with the panel on several monitors
 - Twelve languages
 
-## Installing
+## Installation
 
-Without root, into `~/.local`:
+### Flatpak
 
 ```sh
-just build-release
-just install-user
+flatpak remote-add --if-not-exists --user cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
+flatpak install --user cosmic io.github.marcelogomes90.cosmic-ext-applet-pause
 ```
 
-System wide:
+### From source
+
+Needs a Rust toolchain and the COSMIC development dependencies.
 
 ```sh
 just build-release
-sudo just install
+just install-user      # ~/.local, no root
+# or
+sudo just install      # /usr
 ```
 
 Then add **Pause** in Settings → Desktop → Panel → Applets.
