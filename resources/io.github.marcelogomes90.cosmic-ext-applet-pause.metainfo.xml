@@ -260,6 +260,17 @@
   </keywords>
 
   <releases>
+    <release type="stable" version="1.1.0" date="2026-09-16">
+      <description>
+        <ul>
+          <li>Holds the reminders while the desktop is in Do Not Disturb, and hands back exactly the time that was left once it lifts.</li>
+          <li>Reads a paused countdown from the moment it froze, so resetting the timers or restarting the panel mid-pause no longer inflates every reminder.</li>
+          <li>Opens the popup already showing the right countdowns instead of correcting them a second later.</li>
+          <li>Leaves the panel icon alone when a reminder arrives — the notification is the announcement.</li>
+          <li>Clearer posture and movement glyphs, a dashed ring for the paused panel, and a tinted background behind each reminder icon.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="1.0.0" date="2026-09-16">
       <description>
         <p>The first release.</p>

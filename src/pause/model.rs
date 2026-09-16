@@ -127,8 +127,6 @@ pub const MAX_SNOOZE: Duration = Duration::from_hours(1);
 pub const INTERVAL_STEP_MINUTES: u32 = 10;
 pub const MIN_INTERVAL_MINUTES: u32 = 10;
 pub const MAX_INTERVAL_MINUTES: u32 = 120;
-pub const SNOOZE_PRESETS_MINUTES: [u32; 4] = [5, 10, 15, 30];
-pub const NOTIFICATION_PRESETS_SECONDS: [u32; 2] = [5, 10];
 
 #[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct ReminderSetting {
@@ -199,10 +197,6 @@ impl Settings {
 
     pub fn notification(&self) -> Duration {
         Duration::from_secs(u64::from(self.notification_secs))
-    }
-
-    pub fn any_enabled(&self) -> bool {
-        ReminderKind::ALL.iter().any(|kind| self.enabled(*kind))
     }
 
     pub fn sanitised(mut self) -> Self {

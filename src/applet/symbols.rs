@@ -15,7 +15,6 @@ macro_rules! bundled {
 
 bundled! {
     app => "app-symbolic.svg",
-    back => "back-symbolic.svg",
     breathe => "breathe-symbolic.svg",
     bug => "bug-symbolic.svg",
     clock => "clock-symbolic.svg",
@@ -26,12 +25,10 @@ bundled! {
     r#move => "move-symbolic.svg",
     panel => "panel-symbolic.svg",
     panel_paused => "panel-paused-symbolic.svg",
-    pause => "pause-symbolic.svg",
     person => "person-symbolic.svg",
     play => "play-symbolic.svg",
     posture => "posture-symbolic.svg",
     settings => "settings-symbolic.svg",
-    skip => "skip-symbolic.svg",
     water => "water-symbolic.svg",
     wrists => "wrists-symbolic.svg",
 }

@@ -108,10 +108,6 @@ impl Pause {
         &self.settings
     }
 
-    pub fn popup_id(&self) -> Option<window::Id> {
-        self.popup.id()
-    }
-
     fn command(&self, command: Command) -> Task<Message> {
         self.scheduler.send(command);
         Task::none()

@@ -22,28 +22,6 @@ impl CallError {
             Self::Timeout { label, .. } | Self::Dbus { label, .. } => label,
         }
     }
-
-    pub fn is_transient(&self) -> bool {
-        match self {
-            Self::Timeout { .. } => true,
-            Self::Dbus { source, .. } => match &**source {
-                zbus::Error::MethodError(..) | zbus::Error::InterfaceNotFound => false,
-                zbus::Error::FDO(fdo) => matches!(
-                    **fdo,
-                    zbus::fdo::Error::NoReply(_)
-                        | zbus::fdo::Error::Timeout(_)
-                        | zbus::fdo::Error::TimedOut(_)
-                        | zbus::fdo::Error::IOError(_)
-                        | zbus::fdo::Error::NoServer(_)
-                        | zbus::fdo::Error::NoNetwork(_)
-                        | zbus::fdo::Error::Disconnected(_)
-                        | zbus::fdo::Error::NoMemory(_)
-                        | zbus::fdo::Error::LimitsExceeded(_)
-                ),
-                _ => true,
-            },
-        }
-    }
 }
 
 impl std::fmt::Display for CallError {

@@ -8,7 +8,7 @@ use futures::Stream;
 use crate::applet::message::Message;
 use crate::config::CONFIG_VERSION;
 use crate::pause::PauseHandle;
-use crate::pause::model::{Settings, Snapshot};
+use crate::pause::model::Settings;
 use crate::pause::schedule::Record;
 
 pub const UI_TICK: Duration = Duration::from_secs(1);
@@ -81,8 +81,4 @@ pub fn now() -> crate::pause::model::Moment {
         });
 
     crate::pause::model::Moment::from_epoch_seconds(seconds)
-}
-
-pub fn initial(handle: &PauseHandle) -> Arc<Snapshot> {
-    handle.snapshot()
 }

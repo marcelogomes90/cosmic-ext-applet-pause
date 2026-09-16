@@ -82,11 +82,12 @@ pub fn chip(theme: &cosmic::Theme, lively: bool) -> widget::container::Style {
 }
 
 pub fn quiet() -> cosmic::theme::Button {
-    neutral_button(false)
-}
-
-pub fn flat() -> cosmic::theme::Button {
-    neutral_button(true)
+    cosmic::theme::Button::Custom {
+        active: Box::new(|_, theme| neutral_style(theme, 0.0)),
+        disabled: Box::new(|theme| neutral_style(theme, 0.0)),
+        hovered: Box::new(|_, theme| neutral_style(theme, 0.08)),
+        pressed: Box::new(|_, theme| neutral_style(theme, 0.14)),
+    }
 }
 
 pub fn suggested() -> cosmic::theme::Button {
@@ -120,15 +121,6 @@ pub fn dimmed(theme: &cosmic::Theme) -> Color {
     let cosmic = theme.cosmic();
 
     with_alpha(Color::from(cosmic.on_bg_color()), 0.55)
-}
-
-fn neutral_button(filled: bool) -> cosmic::theme::Button {
-    cosmic::theme::Button::Custom {
-        active: Box::new(move |_, theme| neutral_style(theme, if filled { 0.08 } else { 0.0 })),
-        disabled: Box::new(move |theme| neutral_style(theme, 0.0)),
-        hovered: Box::new(move |_, theme| neutral_style(theme, if filled { 0.16 } else { 0.08 })),
-        pressed: Box::new(move |_, theme| neutral_style(theme, if filled { 0.22 } else { 0.14 })),
-    }
 }
 
 fn neutral_style(theme: &cosmic::Theme, alpha: f32) -> widget::button::Style {

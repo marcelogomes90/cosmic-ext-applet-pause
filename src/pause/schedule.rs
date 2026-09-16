@@ -910,7 +910,7 @@ mod tests {
     }
 
     #[test]
-    fn the_badge_goes_away_on_its_own_so_the_panel_returns_to_rest() {
+    fn a_reminder_stops_counting_as_pending_on_its_own() {
         let settings = only(&[ReminderKind::Eyes]);
         let mut schedule = started(&settings);
         let fired_at = at(20 * 60);
@@ -923,7 +923,7 @@ mod tests {
 
         assert!(
             !schedule.is_pending(ReminderKind::Eyes, later),
-            "the panel must stop shouting after a couple of minutes"
+            "an unanswered reminder must not stay pending forever"
         );
     }
 
