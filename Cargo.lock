@@ -931,7 +931,7 @@ dependencies = [
 
 [[package]]
 name = "cosmic-ext-applet-pause"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "futures",
  "i18n-embed",

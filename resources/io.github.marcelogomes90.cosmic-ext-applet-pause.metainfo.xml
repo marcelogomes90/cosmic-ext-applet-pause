@@ -260,9 +260,16 @@
   </keywords>
 
   <releases>
-    <release type="development" version="0.1.0" date="2026-09-16">
+    <release type="stable" version="1.0.0" date="2026-09-16">
       <description>
-        <p>First working version.</p>
+        <p>The first release.</p>
+        <ul>
+          <li>Six reminders — eyes, water, breathing, movement, posture and wrists — each on its own interval and switched on or off on its own.</li>
+          <li>Pauses everything for half an hour, an hour, or until you say otherwise, and keeps that choice across a restart.</li>
+          <li>Leaves the countdowns where they were when the machine wakes from suspend, instead of paying back every reminder it owes at once.</li>
+          <li>Sends one notification per reminder even with the panel running on several screens.</li>
+          <li>Speaks twelve languages.</li>
+        </ul>
       </description>
     </release>
   </releases>
