@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.marcelogomes90.cosmic-ext-applet-pause</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <project_group>COSMIC</project_group>
+  <developer id="io.github.marcelogomes90">
+    <name>marcelogomes90</name>
+  </developer>
+
+  <name>Pause</name>
+
+  <summary>Small breaks, remembered for you</summary>
+  <summary xml:lang="cs">Krátké přestávky, na které za vás pamatuje</summary>
+  <summary xml:lang="de">Kleine Pausen, an die für dich gedacht wird</summary>
+  <summary xml:lang="es">Pausas breves, recordadas por ti</summary>
+  <summary xml:lang="fr">De petites pauses, dont on se souvient pour vous</summary>
+  <summary xml:lang="it">Piccole pause, ricordate al posto tuo</summary>
+  <summary xml:lang="nl">Korte pauzes, voor je onthouden</summary>
+  <summary xml:lang="pl">Krótkie przerwy, o których pamięta za ciebie</summary>
+  <summary xml:lang="pt-BR">Pequenas pausas, lembradas por você</summary>
+  <summary xml:lang="ru">Короткие перерывы, о которых помнят за вас</summary>
+  <summary xml:lang="uk">Короткі перерви, про які пам’ятають за вас</summary>
+  <summary xml:lang="zh-CN">替你记住的小憩时刻</summary>
+
+  <description>
+    <p>Pause sits in the COSMIC panel and reminds you to look after yourself while you work: rest your eyes, drink water, take a deep breath, get up and move, check your posture, and relax your wrists.</p>
+    <p xml:lang="cs">Pause sedí v panelu COSMIC a připomíná vám, abyste během práce mysleli i na sebe: dopřát očím odpočinek, napít se vody, zhluboka se nadechnout, vstát a protáhnout se, zkontrolovat držení těla a uvolnit zápěstí.</p>
+    <p xml:lang="de">Pause sitzt im COSMIC-Panel und erinnert dich daran, während der Arbeit auf dich zu achten: die Augen ausruhen, Wasser trinken, tief durchatmen, aufstehen und dich bewegen, die Haltung prüfen und die Handgelenke entspannen.</p>
+    <p xml:lang="es">Pause vive en el panel de COSMIC y te recuerda que te cuides mientras trabajas: descansar la vista, beber agua, respirar hondo, levantarte y moverte, revisar tu postura y relajar las muñecas.</p>
+    <p xml:lang="fr">Pause vit dans le panneau COSMIC et vous rappelle de prendre soin de vous pendant que vous travaillez : reposer vos yeux, boire de l’eau, respirer profondément, vous lever et bouger, vérifier votre posture et détendre vos poignets.</p>
+    <p xml:lang="it">Pause vive nel pannello di COSMIC e ti ricorda di prenderti cura di te mentre lavori: far riposare gli occhi, bere acqua, fare un respiro profondo, alzarti e muoverti, controllare la postura e rilassare i polsi.</p>
+    <p xml:lang="nl">Pause zit in het COSMIC-paneel en herinnert je eraan goed voor jezelf te zorgen terwijl je werkt: je ogen rust gunnen, water drinken, diep ademhalen, opstaan en bewegen, je houding controleren en je polsen ontspannen.</p>
+    <p xml:lang="pl">Pause mieszka w panelu COSMIC i przypomina, żebyś zadbał o siebie podczas pracy: dać odpocząć oczom, napić się wody, wziąć głęboki oddech, wstać i się rozruszać, sprawdzić postawę i rozluźnić nadgarstki.</p>
+    <p xml:lang="pt-BR">O Pause fica no painel do COSMIC e lembra você de se cuidar enquanto trabalha: descansar os olhos, beber água, respirar fundo, levantar e se movimentar, conferir a postura e relaxar os punhos.</p>
+    <p xml:lang="ru">Pause живёт на панели COSMIC и напоминает заботиться о себе во время работы: дать глазам отдохнуть, выпить воды, глубоко вдохнуть, встать и размяться, проверить осанку и расслабить запястья.</p>
+    <p xml:lang="uk">Pause живе на панелі COSMIC і нагадує дбати про себе під час роботи: дати очам відпочити, випити води, глибоко вдихнути, встати й розім’ятися, перевірити поставу та розслабити зап’ястки.</p>
+    <p xml:lang="zh-CN">Pause 位于 COSMIC 面板中，提醒你在工作时照顾好自己：让眼睛休息、喝水、做个深呼吸、起身活动、检查坐姿，以及放松手腕。</p>
+    <p>Each reminder runs on its own schedule and can be turned on or off independently. Reminders arrive as ordinary system notifications and never steal your focus. Everything is configured from the panel popup, so there is no separate settings window to hunt for.</p>
+    <p xml:lang="cs">Každá připomínka má vlastní rozvrh a lze ji zapnout či vypnout samostatně. Připomínky přicházejí jako běžná systémová oznámení a nikdy vám neberou zaměření. Vše se nastavuje přímo ve vyskakovacím okně panelu, takže není potřeba hledat zvláštní okno nastavení.</p>
+    <p xml:lang="de">Jede Erinnerung läuft nach ihrem eigenen Zeitplan und lässt sich einzeln ein- oder ausschalten. Erinnerungen kommen als gewöhnliche Systembenachrichtigungen und stehlen nie den Fokus. Alles wird im Panel-Popup eingestellt, ein eigenes Einstellungsfenster gibt es nicht.</p>
+    <p xml:lang="es">Cada recordatorio tiene su propio horario y se puede activar o desactivar por separado. Los recordatorios llegan como notificaciones normales del sistema y nunca te roban el foco. Todo se configura desde el menú del panel, así que no hay una ventana de ajustes aparte.</p>
+    <p xml:lang="fr">Chaque rappel suit son propre rythme et s’active ou se désactive indépendamment. Les rappels arrivent comme de simples notifications système et ne volent jamais le focus. Tout se configure depuis la fenêtre du panneau, sans fenêtre de réglages séparée.</p>
+    <p xml:lang="it">Ogni promemoria segue il proprio ritmo e si può attivare o disattivare singolarmente. I promemoria arrivano come normali notifiche di sistema e non rubano mai il focus. Tutto si configura dal popup del pannello, senza una finestra di impostazioni separata.</p>
+    <p xml:lang="nl">Elke herinnering volgt haar eigen schema en kan los aan of uit. Herinneringen komen binnen als gewone systeemmeldingen en pakken nooit de focus af. Alles stel je in vanuit het paneelvenster, dus er is geen apart instellingenvenster.</p>
+    <p xml:lang="pl">Każde przypomnienie ma własny harmonogram i można je włączać lub wyłączać osobno. Przypomnienia pojawiają się jako zwykłe powiadomienia systemowe i nigdy nie zabierają fokusu. Wszystko konfigurujesz w oknie panelu, bez osobnego okna ustawień.</p>
+    <p xml:lang="pt-BR">Cada lembrete tem seu próprio intervalo e pode ser ligado ou desligado de forma independente. Os lembretes chegam como notificações normais do sistema e nunca roubam o foco. Tudo é configurado no popup do painel, sem janela de configuração separada.</p>
+    <p xml:lang="ru">У каждого напоминания свой график, и его можно включить или выключить отдельно. Напоминания приходят обычными системными уведомлениями и никогда не перехватывают фокус. Всё настраивается во всплывающем окне панели, отдельного окна настроек нет.</p>
+    <p xml:lang="uk">Кожне нагадування має власний графік, і його можна вмикати чи вимикати окремо. Нагадування надходять як звичайні системні сповіщення й ніколи не перехоплюють фокус. Усе налаштовується у вікні панелі, без окремого вікна налаштувань.</p>
+    <p xml:lang="zh-CN">每项提醒都有自己的节奏，可以单独开启或关闭。提醒以普通系统通知的形式出现，绝不抢占焦点。全部设置都在面板弹出窗口中完成，没有单独的设置窗口。</p>
+    <ul>
+      <li>Six reminders with intervals you choose</li>
+      <li>Pause everything for half an hour, an hour, or until you say otherwise</li>
+      <li>Nothing fires in a burst after the machine wakes from suspend</li>
+      <li xml:lang="cs">Šest připomínek s intervaly podle vás</li>
+      <li xml:lang="cs">Pozastavte vše na půl hodiny, hodinu, nebo dokud neřeknete jinak</li>
+      <li xml:lang="cs">Po probuzení z režimu spánku nepřijde žádná salva oznámení</li>
+      <li xml:lang="de">Sechs Erinnerungen mit Intervallen deiner Wahl</li>
+      <li xml:lang="de">Pausiere alles für eine halbe Stunde, eine Stunde oder bis auf Weiteres</li>
+      <li xml:lang="de">Nach dem Aufwachen aus dem Ruhezustand kommt keine Flut von Hinweisen</li>
+      <li xml:lang="es">Seis recordatorios con los intervalos que elijas</li>
+      <li xml:lang="es">Pausa todo media hora, una hora o hasta que tú digas</li>
+      <li xml:lang="es">Nada llega de golpe cuando el equipo despierta de la suspensión</li>
+      <li xml:lang="fr">Six rappels, avec les intervalles de votre choix</li>
+      <li xml:lang="fr">Mettez tout en pause une demi-heure, une heure, ou jusqu’à nouvel ordre</li>
+      <li xml:lang="fr">Aucune rafale de rappels au réveil après une mise en veille</li>
+      <li xml:lang="it">Sei promemoria con gli intervalli che scegli tu</li>
+      <li xml:lang="it">Metti tutto in pausa per mezz’ora, un’ora o finché non decidi tu</li>
+      <li xml:lang="it">Al risveglio dalla sospensione non arriva alcuna raffica di notifiche</li>
+      <li xml:lang="nl">Zes herinneringen met intervallen naar keuze</li>
+      <li xml:lang="nl">Pauzeer alles een half uur, een uur, of tot je zegt dat het genoeg is</li>
+      <li xml:lang="nl">Geen stortvloed aan meldingen nadat de machine uit slaapstand komt</li>
+      <li xml:lang="pl">Sześć przypomnień z interwałami, które wybierasz</li>
+      <li xml:lang="pl">Wstrzymaj wszystko na pół godziny, godzinę lub do odwołania</li>
+      <li xml:lang="pl">Po wybudzeniu z uśpienia nie przychodzi lawina powiadomień</li>
+      <li xml:lang="pt-BR">Seis lembretes com os intervalos que você escolher</li>
+      <li xml:lang="pt-BR">Pause tudo por meia hora, uma hora, ou até você decidir</li>
+      <li xml:lang="pt-BR">Nada chega em rajada quando a máquina acorda da suspensão</li>
+      <li xml:lang="ru">Шесть напоминаний с интервалами на ваш выбор</li>
+      <li xml:lang="ru">Остановите всё на полчаса, час или до особого распоряжения</li>
+      <li xml:lang="ru">После выхода из сна не приходит шквал уведомлений</li>
+      <li xml:lang="uk">Шість нагадувань з інтервалами на ваш вибір</li>
+      <li xml:lang="uk">Зупиніть усе на пів години, годину або до окремого рішення</li>
+      <li xml:lang="uk">Після виходу зі сну не надходить злива сповіщень</li>
+      <li xml:lang="zh-CN">六项提醒，间隔由你决定</li>
+      <li xml:lang="zh-CN">把一切暂停半小时、一小时，或直到你说停</li>
+      <li xml:lang="zh-CN">从睡眠唤醒后不会涌来一堆提醒</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/marcelogomes90/cosmic-ext-applet-pause/main/resources/screenshots/overview.png</image>
+      <caption>Every reminder with its interval, its countdown and its own switch</caption>
+      <caption xml:lang="cs">Každá připomínka se svým intervalem, odpočtem a vlastním přepínačem</caption>
+      <caption xml:lang="de">Jede Erinnerung mit Intervall, Countdown und eigenem Schalter</caption>
+      <caption xml:lang="es">Cada recordatorio con su intervalo, su cuenta atrás y su propio interruptor</caption>
+      <caption xml:lang="fr">Chaque rappel avec son intervalle, son compte à rebours et son interrupteur</caption>
+      <caption xml:lang="it">Ogni promemoria con il suo intervallo, il conto alla rovescia e il suo interruttore</caption>
+      <caption xml:lang="nl">Elke herinnering met haar interval, aftelling en eigen schakelaar</caption>
+      <caption xml:lang="pl">Każde przypomnienie z interwałem, odliczaniem i własnym przełącznikiem</caption>
+      <caption xml:lang="pt-BR">Cada lembrete com seu intervalo, sua contagem e seu próprio botão</caption>
+      <caption xml:lang="ru">Каждое напоминание со своим интервалом, обратным отсчётом и переключателем</caption>
+      <caption xml:lang="uk">Кожне нагадування зі своїм інтервалом, відліком і власним перемикачем</caption>
+      <caption xml:lang="zh-CN">每项提醒都有自己的间隔、倒计时和开关</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/marcelogomes90/cosmic-ext-applet-pause/main/resources/screenshots/paused.png</image>
+      <caption>Everything paused until a time you choose, and resumed in one click</caption>
+      <caption xml:lang="cs">Vše pozastaveno do času, který zvolíte, a obnoveno jediným kliknutím</caption>
+      <caption xml:lang="de">Alles pausiert bis zu einer Zeit deiner Wahl, mit einem Klick fortgesetzt</caption>
+      <caption xml:lang="es">Todo en pausa hasta la hora que elijas, y reanudado con un clic</caption>
+      <caption xml:lang="fr">Tout en pause jusqu’à l’heure de votre choix, et repris en un clic</caption>
+      <caption xml:lang="it">Tutto in pausa fino all’ora che scegli, e ripreso con un clic</caption>
+      <caption xml:lang="nl">Alles gepauzeerd tot een tijd die jij kiest, en met één klik hervat</caption>
+      <caption xml:lang="pl">Wszystko wstrzymane do wybranej godziny i wznowione jednym kliknięciem</caption>
+      <caption xml:lang="pt-BR">Tudo pausado até a hora que você escolher, e retomado em um clique</caption>
+      <caption xml:lang="ru">Всё приостановлено до выбранного вами времени и возобновляется одним щелчком</caption>
+      <caption xml:lang="uk">Усе призупинено до обраного вами часу й відновлюється одним клацанням</caption>
+      <caption xml:lang="zh-CN">一切暂停到你选定的时间，一键恢复</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/marcelogomes90/cosmic-ext-applet-pause/main/resources/screenshots/settings.png</image>
+      <caption>Intervals are set right in the popup, ten minutes at a time</caption>
+      <caption xml:lang="cs">Intervaly se nastavují přímo ve vyskakovacím okně, po deseti minutách</caption>
+      <caption xml:lang="de">Intervalle werden direkt im Popup eingestellt, in Schritten von zehn Minuten</caption>
+      <caption xml:lang="es">Los intervalos se ajustan en el propio menú, de diez en diez minutos</caption>
+      <caption xml:lang="fr">Les intervalles se règlent dans la fenêtre même, par tranches de dix minutes</caption>
+      <caption xml:lang="it">Gli intervalli si impostano nel popup stesso, dieci minuti alla volta</caption>
+      <caption xml:lang="nl">Intervallen stel je in het venster zelf in, met stappen van tien minuten</caption>
+      <caption xml:lang="pl">Interwały ustawiasz w samym oknie, co dziesięć minut</caption>
+      <caption xml:lang="pt-BR">Os intervalos são ajustados no próprio popup, de dez em dez minutos</caption>
+      <caption xml:lang="ru">Интервалы задаются прямо во всплывающем окне, с шагом в десять минут</caption>
+      <caption xml:lang="uk">Інтервали задаються просто у вікні, кроком у десять хвилин</caption>
+      <caption xml:lang="zh-CN">间隔就在弹出窗口中设置，每次十分钟</caption>
+    </screenshot>
+  </screenshots>
+
+  <launchable type="desktop-id">io.github.marcelogomes90.cosmic-ext-applet-pause.desktop</launchable>
+
+  <url type="homepage">https://github.com/marcelogomes90/cosmic-ext-applet-pause</url>
+  <url type="bugtracker">https://github.com/marcelogomes90/cosmic-ext-applet-pause/issues</url>
+  <url type="vcs-browser">https://github.com/marcelogomes90/cosmic-ext-applet-pause</url>
+
+  <provides>
+    <id>com.system76.CosmicApplet</id>
+    <binary>cosmic-ext-applet-pause</binary>
+  </provides>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </supports>
+
+  <categories>
+    <category>Utility</category>
+  </categories>
+
+  <keywords>
+    <keyword>COSMIC</keyword>
+    <keyword>Applet</keyword>
+    <keyword>Break</keyword>
+    <keyword>Reminder</keyword>
+    <keyword>Health</keyword>
+    <keyword>Ergonomics</keyword>
+    <keyword>Timer</keyword>
+    <keyword>Posture</keyword>
+    <keyword xml:lang="cs">COSMIC</keyword>
+    <keyword xml:lang="cs">Applet</keyword>
+    <keyword xml:lang="cs">Přestávka</keyword>
+    <keyword xml:lang="cs">Připomínka</keyword>
+    <keyword xml:lang="cs">Zdraví</keyword>
+    <keyword xml:lang="cs">Ergonomie</keyword>
+    <keyword xml:lang="cs">Časovač</keyword>
+    <keyword xml:lang="cs">Držení těla</keyword>
+    <keyword xml:lang="de">COSMIC</keyword>
+    <keyword xml:lang="de">Applet</keyword>
+    <keyword xml:lang="de">Pause</keyword>
+    <keyword xml:lang="de">Erinnerung</keyword>
+    <keyword xml:lang="de">Gesundheit</keyword>
+    <keyword xml:lang="de">Ergonomie</keyword>
+    <keyword xml:lang="de">Timer</keyword>
+    <keyword xml:lang="de">Haltung</keyword>
+    <keyword xml:lang="es">COSMIC</keyword>
+    <keyword xml:lang="es">Applet</keyword>
+    <keyword xml:lang="es">Pausa</keyword>
+    <keyword xml:lang="es">Recordatorio</keyword>
+    <keyword xml:lang="es">Salud</keyword>
+    <keyword xml:lang="es">Ergonomía</keyword>
+    <keyword xml:lang="es">Temporizador</keyword>
+    <keyword xml:lang="es">Postura</keyword>
+    <keyword xml:lang="fr">COSMIC</keyword>
+    <keyword xml:lang="fr">Applet</keyword>
+    <keyword xml:lang="fr">Pause</keyword>
+    <keyword xml:lang="fr">Rappel</keyword>
+    <keyword xml:lang="fr">Santé</keyword>
+    <keyword xml:lang="fr">Ergonomie</keyword>
+    <keyword xml:lang="fr">Minuteur</keyword>
+    <keyword xml:lang="fr">Posture</keyword>
+    <keyword xml:lang="it">COSMIC</keyword>
+    <keyword xml:lang="it">Applet</keyword>
+    <keyword xml:lang="it">Pausa</keyword>
+    <keyword xml:lang="it">Promemoria</keyword>
+    <keyword xml:lang="it">Salute</keyword>
+    <keyword xml:lang="it">Ergonomia</keyword>
+    <keyword xml:lang="it">Timer</keyword>
+    <keyword xml:lang="it">Postura</keyword>
+    <keyword xml:lang="nl">COSMIC</keyword>
+    <keyword xml:lang="nl">Applet</keyword>
+    <keyword xml:lang="nl">Pauze</keyword>
+    <keyword xml:lang="nl">Herinnering</keyword>
+    <keyword xml:lang="nl">Gezondheid</keyword>
+    <keyword xml:lang="nl">Ergonomie</keyword>
+    <keyword xml:lang="nl">Timer</keyword>
+    <keyword xml:lang="nl">Houding</keyword>
+    <keyword xml:lang="pl">COSMIC</keyword>
+    <keyword xml:lang="pl">Applet</keyword>
+    <keyword xml:lang="pl">Przerwa</keyword>
+    <keyword xml:lang="pl">Przypomnienie</keyword>
+    <keyword xml:lang="pl">Zdrowie</keyword>
+    <keyword xml:lang="pl">Ergonomia</keyword>
+    <keyword xml:lang="pl">Minutnik</keyword>
+    <keyword xml:lang="pl">Postawa</keyword>
+    <keyword xml:lang="pt-BR">COSMIC</keyword>
+    <keyword xml:lang="pt-BR">Applet</keyword>
+    <keyword xml:lang="pt-BR">Pausa</keyword>
+    <keyword xml:lang="pt-BR">Lembrete</keyword>
+    <keyword xml:lang="pt-BR">Saúde</keyword>
+    <keyword xml:lang="pt-BR">Ergonomia</keyword>
+    <keyword xml:lang="pt-BR">Temporizador</keyword>
+    <keyword xml:lang="pt-BR">Postura</keyword>
+    <keyword xml:lang="ru">COSMIC</keyword>
+    <keyword xml:lang="ru">Applet</keyword>
+    <keyword xml:lang="ru">Перерыв</keyword>
+    <keyword xml:lang="ru">Напоминание</keyword>
+    <keyword xml:lang="ru">Здоровье</keyword>
+    <keyword xml:lang="ru">Эргономика</keyword>
+    <keyword xml:lang="ru">Таймер</keyword>
+    <keyword xml:lang="ru">Осанка</keyword>
+    <keyword xml:lang="uk">COSMIC</keyword>
+    <keyword xml:lang="uk">Applet</keyword>
+    <keyword xml:lang="uk">Перерва</keyword>
+    <keyword xml:lang="uk">Нагадування</keyword>
+    <keyword xml:lang="uk">Здоров’я</keyword>
+    <keyword xml:lang="uk">Ергономіка</keyword>
+    <keyword xml:lang="uk">Таймер</keyword>
+    <keyword xml:lang="uk">Постава</keyword>
+    <keyword xml:lang="zh-CN">COSMIC</keyword>
+    <keyword xml:lang="zh-CN">Applet</keyword>
+    <keyword xml:lang="zh-CN">休息</keyword>
+    <keyword xml:lang="zh-CN">提醒</keyword>
+    <keyword xml:lang="zh-CN">健康</keyword>
+    <keyword xml:lang="zh-CN">人体工学</keyword>
+    <keyword xml:lang="zh-CN">计时器</keyword>
+    <keyword xml:lang="zh-CN">坐姿</keyword>
+  </keywords>
+
+  <releases>
+    <release type="development" version="0.1.0" date="2026-09-16">
+      <description>
+        <p>First working version.</p>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1"/>
+</component>
