@@ -4,8 +4,9 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <project_group>COSMIC</project_group>
+  <developer_name>Marcelo Gomes</developer_name>
   <developer id="io.github.marcelogomes90">
-    <name>marcelogomes90</name>
+    <name>Marcelo Gomes</name>
   </developer>
 
   <name>Pause</name>
@@ -140,6 +141,8 @@
 
   <url type="homepage">https://github.com/marcelogomes90/cosmic-ext-applet-pause</url>
   <url type="bugtracker">https://github.com/marcelogomes90/cosmic-ext-applet-pause/issues</url>
+  <url type="help">https://github.com/marcelogomes90/cosmic-ext-applet-pause#readme</url>
+  <url type="contact">mailto:marcelo.sobrinho@outlook.com</url>
   <url type="vcs-browser">https://github.com/marcelogomes90/cosmic-ext-applet-pause</url>
 
   <provides>
