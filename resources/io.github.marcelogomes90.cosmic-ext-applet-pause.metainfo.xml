@@ -264,6 +264,15 @@
   </keywords>
 
   <releases>
+    <release type="stable" version="1.1.2" date="2026-09-18">
+      <description>
+        <p>This patch redraws the posture and movement reminders so they read at a glance.</p>
+        <ul>
+          <li>Marks the posture reminder with a chair, in place of a seated figure whose chair and limbs ran together at the size the list draws them.</li>
+          <li>Redraws the movement reminder with an even stride and both arms, in place of a figure that carried only one.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="1.1.1" date="2026-09-16">
       <description>
         <p>This patch hands the settings button to the desktop's icon theme and marks a pause with a stop.</p>
