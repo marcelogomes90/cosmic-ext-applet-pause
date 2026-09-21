@@ -153,7 +153,8 @@ pub fn setting_row<'a>(
 
 pub fn settings_button<'a>() -> Element<'a, Message> {
     widget::button::icon(symbols::settings())
-        .class(style::quiet())
+        .class(style::quiet_round())
+        .padding((CONTROL_HEIGHT - ICON) / 2)
         .width(Length::Fixed(f32::from(CONTROL_HEIGHT)))
         .height(Length::Fixed(f32::from(CONTROL_HEIGHT)))
         .on_press(Message::ShowSettings(true))
@@ -198,16 +199,20 @@ pub fn action<'a>(
         .spacing(GAP_TIGHT + 2)
         .align_y(Alignment::Center);
 
-    widget::button::custom(widget::container(content).center(Length::Fill))
-        .class(if prominent {
-            style::suggested()
-        } else {
-            style::standard()
-        })
-        .padding(0)
-        .height(Length::Fixed(f32::from(CONTROL_HEIGHT + 4)))
-        .width(Length::FillPortion(portion))
-        .on_press_maybe(message)
+    widget::button::custom(
+        widget::container(content)
+            .center(Length::Fill)
+            .style(style::inherit),
+    )
+    .class(if prominent {
+        style::suggested()
+    } else {
+        style::standard()
+    })
+    .padding(0)
+    .height(Length::Fixed(f32::from(CONTROL_HEIGHT + 4)))
+    .width(Length::FillPortion(portion))
+    .on_press_maybe(message)
 }
 
 pub fn scroll<'a>(

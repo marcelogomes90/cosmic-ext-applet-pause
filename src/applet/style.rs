@@ -82,11 +82,19 @@ pub fn chip(theme: &cosmic::Theme, lively: bool) -> widget::container::Style {
 }
 
 pub fn quiet() -> cosmic::theme::Button {
+    quiet_class(false)
+}
+
+pub fn quiet_round() -> cosmic::theme::Button {
+    quiet_class(true)
+}
+
+fn quiet_class(round: bool) -> cosmic::theme::Button {
     cosmic::theme::Button::Custom {
-        active: Box::new(|_, theme| neutral_style(theme, 0.0)),
-        disabled: Box::new(|theme| neutral_style(theme, 0.0)),
-        hovered: Box::new(|_, theme| neutral_style(theme, 0.08)),
-        pressed: Box::new(|_, theme| neutral_style(theme, 0.14)),
+        active: Box::new(move |_, theme| neutral_style(theme, 0.0, round)),
+        disabled: Box::new(move |theme| neutral_style(theme, 0.0, round)),
+        hovered: Box::new(move |_, theme| neutral_style(theme, 0.08, round)),
+        pressed: Box::new(move |_, theme| neutral_style(theme, 0.14, round)),
     }
 }
 
@@ -123,17 +131,26 @@ pub fn dimmed(theme: &cosmic::Theme) -> Color {
     with_alpha(Color::from(cosmic.on_bg_color()), 0.55)
 }
 
-fn neutral_style(theme: &cosmic::Theme, alpha: f32) -> widget::button::Style {
+fn neutral_style(theme: &cosmic::Theme, alpha: f32, round: bool) -> widget::button::Style {
     let cosmic = theme.cosmic();
     let ink = Color::from(cosmic.on_bg_color());
+    let radius = if round {
+        cosmic.corner_radii.radius_xl
+    } else {
+        cosmic.corner_radii.radius_s
+    };
 
     widget::button::Style {
         background: (alpha > 0.0).then(|| Background::Color(with_alpha(ink, alpha))),
-        border_radius: cosmic.corner_radii.radius_s.into(),
+        border_radius: radius.into(),
         icon_color: Some(ink),
         text_color: Some(ink),
         ..widget::button::Style::new()
     }
+}
+
+pub fn inherit(_theme: &cosmic::Theme) -> widget::container::Style {
+    widget::container::Style::default()
 }
 
 fn with_alpha(colour: Color, alpha: f32) -> Color {

@@ -216,6 +216,21 @@ are live and dimmed ink when they are off or paused. Buttons use `Button::Sugges
 looks right in the default theme and goes unreadable in others, because the matched pair lives
 on the `accent_button` component.
 
+A button only keeps that matched pair if nothing repaints its content on the way down. The quick
+actions centre their label with a container, and libcosmic's default container class is
+`Transparent`, which sets `text_color` and `icon_color` to the ink of the container *around* it —
+so the resume button drew background ink onto an accent fill and went unreadable in exactly the
+themes the paragraph above is about. `style::inherit` leaves all three colours unset, and the
+button's own pair reaches the label again.
+
+Controls take their measurements from the theme too, but a fixed box and a themed padding do not
+mix. The settings button is pinned to `CONTROL_HEIGHT` square and sets its padding explicitly,
+because `button::icon` otherwise pads by `space_xxs` — 12 at the spacious density, which leaves a
+32 pixel button 8 pixels of room for a 16 pixel glyph and silently shrinks it. Its corner radius is
+`radius_xl`, the one libcosmic gives every icon button, so it rounds to a circle when the user asks
+for round corners; the reminder rows keep `radius_s`, because a full width control at `radius_xl`
+is a pill.
+
 ## Icons
 
 The COSMIC icon theme ships 672 icons and has no eye, droplet, walking figure, chair, lungs or
@@ -231,9 +246,11 @@ to 45% opacity — which on a translucent panel reads as a rendering fault rathe
 stop says held; a dashed outline only says faint.
 
 Everything that is not a reminder glyph comes from the icon theme by name: the settings button is
-`preferences-system-symbolic`, resolved through `icon::from_name`, so it matches the rest of the
-panel whatever theme the user has. The COSMIC theme is bundled in `com.system76.Cosmic.BaseApp`,
-which is what makes a named icon safe inside the Flatpak.
+`preferences-system-symbolic` and the page header's back button is `go-previous-symbolic`, both
+resolved through `icon::from_name`, so they match the rest of the panel whatever theme the user
+has. The COSMIC theme is bundled in `com.system76.Cosmic.BaseApp`, which is what makes a named
+icon safe inside the Flatpak — and a name that resolves nowhere draws an empty SVG rather than
+failing, so a new one has to be checked against that bundle and not just against the host.
 
 ## Text that has to fit
 
