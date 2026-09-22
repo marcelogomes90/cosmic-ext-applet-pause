@@ -284,7 +284,7 @@ where
             self.publish(snapshots);
         }
 
-        tracing::info!("the scheduler is shutting down");
+        tracing::debug!("the scheduler is shutting down");
     }
 
     fn on_tick(&mut self) {
@@ -336,7 +336,7 @@ where
             return;
         }
 
-        tracing::info!(quiet, "the desktop changed do not disturb");
+        tracing::debug!(quiet, "the desktop changed do not disturb");
 
         if self.leader {
             self.store.store(&self.schedule.record());
@@ -363,7 +363,7 @@ where
             Event::Notifier(state) => self.notifier_state = state,
             Event::Leader(leader) => {
                 if self.leader != leader {
-                    tracing::info!(leader, "the scheduler changed role");
+                    tracing::debug!(leader, "the scheduler changed role");
                     self.leader = leader;
                 }
             }

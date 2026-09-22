@@ -52,11 +52,11 @@ pub async fn arbitrate(connection: zbus::Connection, name: String, events: mpsc:
     let leading = match reply {
         Ok(RequestNameReply::PrimaryOwner | RequestNameReply::AlreadyOwner) => true,
         Ok(RequestNameReply::InQueue) => {
-            tracing::info!("another instance is sending the reminders, waiting in the queue");
+            tracing::debug!("another instance is sending the reminders, waiting in the queue");
             false
         }
         Ok(RequestNameReply::Exists) => {
-            tracing::info!("another instance holds the name and is not sharing");
+            tracing::debug!("another instance holds the name and is not sharing");
             false
         }
         Err(error) => {

@@ -52,7 +52,7 @@ impl RecordingNotifier {
 
 impl Notifier for RecordingNotifier {
     fn deliver(&mut self, request: Request) {
-        tracing::info!(kind = ?request.kind, summary = %request.summary, "reminder");
+        tracing::debug!(kind = ?request.kind, summary = %request.summary, "reminder");
         self.delivered
             .lock()
             .expect("the recorder is not poisoned")
@@ -142,7 +142,7 @@ mod desktop {
                     if let Ok(args) = signal.args()
                         && let Some(kind) = live.remove(&args.id)
                     {
-                        tracing::info!(?kind, action = args.action_key, "the reminder was answered");
+                        tracing::debug!(?kind, action = args.action_key, "the reminder was answered");
                         let _ = events.try_send(Event::Activated(kind));
                     }
                 }
@@ -195,7 +195,7 @@ mod desktop {
 
         match with_timeout(NOTIFY_TIMEOUT, "GetCapabilities", proxy.get_capabilities()).await {
             Ok(capabilities) => {
-                tracing::info!(?capabilities, "the notification service is ready");
+                tracing::debug!(?capabilities, "the notification service is ready");
                 let _ = events.try_send(Event::Notifier(NotifierState::Ready));
             }
             Err(error) => {
