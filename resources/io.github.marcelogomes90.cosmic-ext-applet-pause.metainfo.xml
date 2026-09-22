@@ -264,6 +264,17 @@
   </keywords>
 
   <releases>
+    <release type="stable" version="1.1.3" date="2026-09-22">
+      <description>
+        <p>This patch fixes two controls that misread the theme, and quiets the system log.</p>
+        <ul>
+          <li>Keeps the resume button's label readable in every theme, in place of one that drew the ink of the popup around it onto its own accent fill and disappeared into it.</li>
+          <li>Draws the settings glyph at full size at the spacious density, where the button's own padding had been shrinking it, and rounds the button to a circle when the theme asks for round corners.</li>
+          <li>Marks the back button with a chevron beside its label, so it matches the buttons that do the same job elsewhere in COSMIC.</li>
+          <li>Leaves the system log alone during ordinary use. Every Do Not Disturb change and answered reminder was written to the journal, which buried anything else being debugged there; startup, which instance sends the reminders, and waking from suspend are still reported.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="1.1.2" date="2026-09-18">
       <description>
         <p>This patch redraws the posture and movement reminders so they read at a glance.</p>
