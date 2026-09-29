@@ -1,5 +1,5 @@
 app-title = Pause
-app-tagline = Krótkie przerwy. Zdrowszy Ty.
+app-tagline = Rób przerwy, będziesz zdrowszy.
 settings = Ustawienia
 back = Wstecz
 
@@ -10,7 +10,7 @@ reminder-water-detail = Pamiętaj o nawodnieniu
 reminder-breathe = Oddech
 reminder-breathe-detail = Weź głęboki oddech
 reminder-move = Ruch
-reminder-move-detail = Wstań i się rozrusz
+reminder-move-detail = Wstań i się rozruszaj
 reminder-posture = Postawa
 reminder-posture-detail = Sprawdź swoją postawę
 reminder-wrists = Nadgarstki
@@ -22,12 +22,12 @@ notify-water-title = Napij się wody
 notify-water-body = Weź łyk i pamiętaj o nawodnieniu.
 notify-breathe-title = Weź głęboki oddech
 notify-breathe-body = Wdychaj powoli, a potem wypuść powietrze.
-notify-move-title = Wstań i się rozrusz
+notify-move-title = Wstań i się rozruszaj
 notify-move-body = Wstań i rozprostuj nogi.
 notify-posture-title = Sprawdź swoją postawę
 notify-posture-body = Odchyl się i wyprostuj plecy.
 notify-wrists-title = Rozluźnij nadgarstki
-notify-wrists-body = Zrób krótkie rozciąganie nadgarstków.
+notify-wrists-body = Krótko porozciągaj nadgarstki.
 
 next-break-in = Następna przerwa za { $time }
 next-break-now = Następna przerwa teraz
@@ -35,8 +35,8 @@ nothing-scheduled = Brak włączonych przypomnień
 nothing-scheduled-detail = Włącz jedno, aby zacząć
 paused-title = Przypomnienia wstrzymane
 paused-until = Do { $time }
-paused-indefinitely = Do czasu wznowienia
-quiet-title = Nie przeszkadzać jest włączone
+paused-indefinitely = Do czasu ich wznowienia
+quiet-title = Tryb nie przeszkadzać jest włączony
 quiet-detail = Przypomnienia są wstrzymane
 
 quick-actions = Szybkie akcje
@@ -53,7 +53,7 @@ settings-reminders = Przypomnienia
 settings-every = Co { $minutes } min
 
 links = Odnośniki
-link-issues = Zgłoszenia
+link-issues = Błędy
 link-developer = Deweloper
 link-repository = Repozytorium
 
