@@ -26,67 +26,101 @@
   <summary xml:lang="zh-CN">替你记住的小憩时刻</summary>
 
   <description>
-    <p>Pause sits in the COSMIC panel and reminds you to look after yourself while you work: rest your eyes, drink water, take a deep breath, get up and move, check your posture, and relax your wrists.</p>
-    <p xml:lang="cs">Pause sedí v panelu COSMIC a připomíná vám, abyste během práce mysleli i na sebe: dopřát očím odpočinek, napít se vody, zhluboka se nadechnout, vstát a protáhnout se, zkontrolovat držení těla a uvolnit zápěstí.</p>
-    <p xml:lang="de">Pause sitzt im COSMIC-Panel und erinnert dich daran, während der Arbeit auf dich zu achten: die Augen ausruhen, Wasser trinken, tief durchatmen, aufstehen und dich bewegen, die Haltung prüfen und die Handgelenke entspannen.</p>
-    <p xml:lang="es">Pause vive en el panel de COSMIC y te recuerda que te cuides mientras trabajas: descansar la vista, beber agua, respirar hondo, levantarte y moverte, revisar tu postura y relajar las muñecas.</p>
-    <p xml:lang="fr">Pause vit dans le panneau COSMIC et vous rappelle de prendre soin de vous pendant que vous travaillez : reposer vos yeux, boire de l’eau, respirer profondément, vous lever et bouger, vérifier votre posture et détendre vos poignets.</p>
-    <p xml:lang="it">Pause vive nel pannello di COSMIC e ti ricorda di prenderti cura di te mentre lavori: far riposare gli occhi, bere acqua, fare un respiro profondo, alzarti e muoverti, controllare la postura e rilassare i polsi.</p>
-    <p xml:lang="nl">Pause zit in het COSMIC-paneel en herinnert je eraan goed voor jezelf te zorgen terwijl je werkt: je ogen rust gunnen, water drinken, diep ademhalen, opstaan en bewegen, je houding controleren en je polsen ontspannen.</p>
-    <p xml:lang="pl">Pause mieszka w panelu COSMIC i przypomina, żebyś zadbał o siebie podczas pracy: dać odpocząć oczom, napić się wody, wziąć głęboki oddech, wstać i się rozruszać, sprawdzić postawę i rozluźnić nadgarstki.</p>
-    <p xml:lang="pt-BR">O Pause fica no painel do COSMIC e lembra você de se cuidar enquanto trabalha: descansar os olhos, beber água, respirar fundo, levantar e se movimentar, conferir a postura e relaxar os punhos.</p>
-    <p xml:lang="ru">Pause живёт на панели COSMIC и напоминает заботиться о себе во время работы: дать глазам отдохнуть, выпить воды, глубоко вдохнуть, встать и размяться, проверить осанку и расслабить запястья.</p>
-    <p xml:lang="uk">Pause живе на панелі COSMIC і нагадує дбати про себе під час роботи: дати очам відпочити, випити води, глибоко вдихнути, встати й розім’ятися, перевірити поставу та розслабити зап’ястки.</p>
-    <p xml:lang="zh-CN">Pause 位于 COSMIC 面板中，提醒你在工作时照顾好自己：让眼睛休息、喝水、做个深呼吸、起身活动、检查坐姿，以及放松手腕。</p>
-    <p>Each reminder runs on its own schedule and can be turned on or off independently. Reminders arrive as ordinary system notifications and never steal your focus. Everything is configured from the panel popup, so there is no separate settings window to hunt for.</p>
-    <p xml:lang="cs">Každá připomínka má vlastní rozvrh a lze ji zapnout či vypnout samostatně. Připomínky přicházejí jako běžná systémová oznámení a nikdy vám neberou zaměření. Vše se nastavuje přímo ve vyskakovacím okně panelu, takže není potřeba hledat zvláštní okno nastavení.</p>
-    <p xml:lang="de">Jede Erinnerung läuft nach ihrem eigenen Zeitplan und lässt sich einzeln ein- oder ausschalten. Erinnerungen kommen als gewöhnliche Systembenachrichtigungen und stehlen nie den Fokus. Alles wird im Panel-Popup eingestellt, ein eigenes Einstellungsfenster gibt es nicht.</p>
-    <p xml:lang="es">Cada recordatorio tiene su propio horario y se puede activar o desactivar por separado. Los recordatorios llegan como notificaciones normales del sistema y nunca te roban el foco. Todo se configura desde el menú del panel, así que no hay una ventana de ajustes aparte.</p>
-    <p xml:lang="fr">Chaque rappel suit son propre rythme et s’active ou se désactive indépendamment. Les rappels arrivent comme de simples notifications système et ne volent jamais le focus. Tout se configure depuis la fenêtre du panneau, sans fenêtre de réglages séparée.</p>
-    <p xml:lang="it">Ogni promemoria segue il proprio ritmo e si può attivare o disattivare singolarmente. I promemoria arrivano come normali notifiche di sistema e non rubano mai il focus. Tutto si configura dal popup del pannello, senza una finestra di impostazioni separata.</p>
-    <p xml:lang="nl">Elke herinnering volgt haar eigen schema en kan los aan of uit. Herinneringen komen binnen als gewone systeemmeldingen en pakken nooit de focus af. Alles stel je in vanuit het paneelvenster, dus er is geen apart instellingenvenster.</p>
-    <p xml:lang="pl">Każde przypomnienie ma własny harmonogram i można je włączać lub wyłączać osobno. Przypomnienia pojawiają się jako zwykłe powiadomienia systemowe i nigdy nie zabierają fokusu. Wszystko konfigurujesz w oknie panelu, bez osobnego okna ustawień.</p>
-    <p xml:lang="pt-BR">Cada lembrete tem seu próprio intervalo e pode ser ligado ou desligado de forma independente. Os lembretes chegam como notificações normais do sistema e nunca roubam o foco. Tudo é configurado no popup do painel, sem janela de configuração separada.</p>
-    <p xml:lang="ru">У каждого напоминания свой график, и его можно включить или выключить отдельно. Напоминания приходят обычными системными уведомлениями и никогда не перехватывают фокус. Всё настраивается во всплывающем окне панели, отдельного окна настроек нет.</p>
-    <p xml:lang="uk">Кожне нагадування має власний графік, і його можна вмикати чи вимикати окремо. Нагадування надходять як звичайні системні сповіщення й ніколи не перехоплюють фокус. Усе налаштовується у вікні панелі, без окремого вікна налаштувань.</p>
-    <p xml:lang="zh-CN">每项提醒都有自己的节奏，可以单独开启或关闭。提醒以普通系统通知的形式出现，绝不抢占焦点。全部设置都在面板弹出窗口中完成，没有单独的设置窗口。</p>
+    <p>Pause is a small nudge to look after yourself while you work. It sits in the COSMIC panel and reminds you, now and then, to rest your eyes, drink some water, take a deep breath, get up and move, straighten your back and relax your wrists.</p>
+    <p>There are six reminders and each one is yours to set: choose how often it should arrive, or switch it off entirely and keep only the ones that help. They show up as ordinary desktop notifications, so nothing ever jumps in front of what you are doing, and everything is set from the panel popup — there is no separate settings window to go looking for.</p>
     <ul>
-      <li>Six reminders with intervals you choose</li>
+      <li>Six reminders, each on an interval you choose</li>
       <li>Pause everything for half an hour, an hour, or until you say otherwise</li>
-      <li>Nothing fires in a burst after the machine wakes from suspend</li>
-      <li xml:lang="cs">Šest připomínek s intervaly podle vás</li>
-      <li xml:lang="cs">Pozastavte vše na půl hodiny, hodinu, nebo dokud neřeknete jinak</li>
-      <li xml:lang="cs">Po probuzení z režimu spánku nepřijde žádná salva oznámení</li>
-      <li xml:lang="de">Sechs Erinnerungen mit Intervallen deiner Wahl</li>
-      <li xml:lang="de">Pausiere alles für eine halbe Stunde, eine Stunde oder bis auf Weiteres</li>
-      <li xml:lang="de">Nach dem Aufwachen aus dem Ruhezustand kommt keine Flut von Hinweisen</li>
-      <li xml:lang="es">Seis recordatorios con los intervalos que elijas</li>
-      <li xml:lang="es">Pausa todo media hora, una hora o hasta que tú digas</li>
+      <li>Quiet while Do Not Disturb is on</li>
+      <li>Nothing arrives in a burst after your computer wakes from sleep</li>
+    </ul>
+    <p xml:lang="cs">Pause je malé pobídnutí, abyste během práce mysleli i na sebe. Sídlí v panelu COSMIC a čas od času vám připomene, ať protáhnete oči, napijete se vody, zhluboka se nadechnete, vstanete a projdete se, narovnáte záda a uvolníte zápěstí.</p>
+    <p xml:lang="cs">Připomenutí je šest a každé si nastavíte sami: zvolte, jak často má přijít, nebo je úplně vypněte a nechte si jen ta, která vám pomáhají. Přicházejí jako běžná oznámení, takže vám nikdy neskočí do rozdělané práce, a vše nastavíte přímo v panelu — žádné zvláštní okno s nastavením hledat nemusíte.</p>
+    <ul>
+      <li xml:lang="cs">Šest připomenutí, každé v intervalu, který si zvolíte</li>
+      <li xml:lang="cs">Pozastavte vše na půl hodiny, na hodinu nebo dokud neřeknete jinak</li>
+      <li xml:lang="cs">Ticho, dokud je zapnutý režim Nerušit</li>
+      <li xml:lang="cs">Po probuzení počítače ze spánku nic nepřijde naráz</li>
+    </ul>
+    <p xml:lang="de">Pause ist ein kleiner Anstoß, bei der Arbeit auch an dich zu denken. Es sitzt im COSMIC-Panel und erinnert dich hin und wieder daran, die Augen auszuruhen, etwas zu trinken, tief durchzuatmen, aufzustehen und dich zu bewegen, den Rücken zu strecken und die Handgelenke zu lockern.</p>
+    <p xml:lang="de">Es gibt sechs Erinnerungen, und jede stellst du selbst ein: Lege fest, wie oft sie kommen soll, oder schalte sie ganz ab und behalte nur die, die dir helfen. Sie erscheinen als gewöhnliche Benachrichtigungen, drängen sich also nie vor das, was du gerade tust, und alles wird direkt im Panel eingestellt – es gibt kein eigenes Einstellungsfenster zu suchen.</p>
+    <ul>
+      <li xml:lang="de">Sechs Erinnerungen, jede in dem Abstand, den du wählst</li>
+      <li xml:lang="de">Alles anhalten – für eine halbe Stunde, eine Stunde oder bis du es wieder aufhebst</li>
+      <li xml:lang="de">Still, solange „Nicht stören“ aktiv ist</li>
+      <li xml:lang="de">Nach dem Aufwachen aus dem Ruhezustand kommt nichts auf einmal</li>
+    </ul>
+    <p xml:lang="es">Pause es un pequeño empujón para cuidarte mientras trabajas. Vive en el panel de COSMIC y te recuerda, de vez en cuando, que descanses la vista, bebas agua, respires hondo, te levantes a moverte, estires la espalda y relajes las muñecas.</p>
+    <p xml:lang="es">Hay seis recordatorios y cada uno es tuyo para ajustar: elige cada cuánto debe llegar, o apágalo del todo y quédate solo con los que te sirven. Llegan como notificaciones normales del escritorio, así que nunca se ponen delante de lo que estás haciendo, y todo se configura desde el panel: no hay una ventana de ajustes aparte que buscar.</p>
+    <ul>
+      <li xml:lang="es">Seis recordatorios, cada uno con el intervalo que elijas</li>
+      <li xml:lang="es">Pausa todo durante media hora, una hora o hasta que tú digas</li>
+      <li xml:lang="es">En silencio mientras el modo No molestar está activo</li>
       <li xml:lang="es">Nada llega de golpe cuando el equipo despierta de la suspensión</li>
-      <li xml:lang="fr">Six rappels, avec les intervalles de votre choix</li>
-      <li xml:lang="fr">Mettez tout en pause une demi-heure, une heure, ou jusqu’à nouvel ordre</li>
-      <li xml:lang="fr">Aucune rafale de rappels au réveil après une mise en veille</li>
-      <li xml:lang="it">Sei promemoria con gli intervalli che scegli tu</li>
-      <li xml:lang="it">Metti tutto in pausa per mezz’ora, un’ora o finché non decidi tu</li>
-      <li xml:lang="it">Al risveglio dalla sospensione non arriva alcuna raffica di notifiche</li>
-      <li xml:lang="nl">Zes herinneringen met intervallen naar keuze</li>
-      <li xml:lang="nl">Pauzeer alles een half uur, een uur, of tot je zegt dat het genoeg is</li>
-      <li xml:lang="nl">Geen stortvloed aan meldingen nadat de machine uit slaapstand komt</li>
-      <li xml:lang="pl">Sześć przypomnień z interwałami, które wybierasz</li>
-      <li xml:lang="pl">Wstrzymaj wszystko na pół godziny, godzinę lub do odwołania</li>
-      <li xml:lang="pl">Po wybudzeniu z uśpienia nie przychodzi lawina powiadomień</li>
-      <li xml:lang="pt-BR">Seis lembretes com os intervalos que você escolher</li>
-      <li xml:lang="pt-BR">Pause tudo por meia hora, uma hora, ou até você decidir</li>
-      <li xml:lang="pt-BR">Nada chega em rajada quando a máquina acorda da suspensão</li>
-      <li xml:lang="ru">Шесть напоминаний с интервалами на ваш выбор</li>
-      <li xml:lang="ru">Остановите всё на полчаса, час или до особого распоряжения</li>
-      <li xml:lang="ru">После выхода из сна не приходит шквал уведомлений</li>
-      <li xml:lang="uk">Шість нагадувань з інтервалами на ваш вибір</li>
-      <li xml:lang="uk">Зупиніть усе на пів години, годину або до окремого рішення</li>
-      <li xml:lang="uk">Після виходу зі сну не надходить злива сповіщень</li>
+    </ul>
+    <p xml:lang="fr">Pause est un petit rappel pour prendre soin de vous pendant que vous travaillez. Il se place dans le panneau COSMIC et vous invite, de temps en temps, à reposer vos yeux, boire un peu d’eau, respirer profondément, vous lever et bouger, redresser le dos et détendre vos poignets.</p>
+    <p xml:lang="fr">Il y a six rappels, et chacun se règle comme vous l’entendez : choisissez la fréquence, ou désactivez-le complètement et ne gardez que ceux qui vous aident. Ils arrivent sous forme de notifications ordinaires, donc rien ne passe jamais devant ce que vous êtes en train de faire, et tout se règle depuis le panneau — aucune fenêtre de paramètres séparée à chercher.</p>
+    <ul>
+      <li xml:lang="fr">Six rappels, chacun à l’intervalle de votre choix</li>
+      <li xml:lang="fr">Tout mettre en pause une demi-heure, une heure, ou jusqu’à nouvel ordre</li>
+      <li xml:lang="fr">Silence tant que le mode Ne pas déranger est actif</li>
+      <li xml:lang="fr">Rien n’arrive en rafale au réveil de l’ordinateur</li>
+    </ul>
+    <p xml:lang="it">Pause è un piccolo invito a prenderti cura di te mentre lavori. Sta nel pannello di COSMIC e ogni tanto ti ricorda di riposare gli occhi, bere un po’ d’acqua, fare un respiro profondo, alzarti e muoverti, raddrizzare la schiena e rilassare i polsi.</p>
+    <p xml:lang="it">I promemoria sono sei e ognuno lo imposti tu: scegli ogni quanto deve arrivare, oppure spegnilo del tutto e tieni solo quelli che ti aiutano. Arrivano come normali notifiche del desktop, quindi non si mettono mai davanti a ciò che stai facendo, e si configura tutto dal pannello: non c’è nessuna finestra delle impostazioni da cercare.</p>
+    <ul>
+      <li xml:lang="it">Sei promemoria, ciascuno con l’intervallo che scegli tu</li>
+      <li xml:lang="it">Metti tutto in pausa per mezz’ora, un’ora o finché non dici altrimenti</li>
+      <li xml:lang="it">In silenzio finché Non disturbare è attivo</li>
+      <li xml:lang="it">Al risveglio del computer non arriva tutto insieme</li>
+    </ul>
+    <p xml:lang="nl">Pause is een klein duwtje om goed voor jezelf te zorgen terwijl je werkt. Het zit in het COSMIC-paneel en herinnert je er af en toe aan om je ogen rust te geven, wat water te drinken, diep adem te halen, even op te staan en te bewegen, je rug te strekken en je polsen los te maken.</p>
+    <p xml:lang="nl">Er zijn zes herinneringen en elke stel je zelf in: kies hoe vaak die moet komen, of zet hem helemaal uit en houd alleen de herinneringen over die je helpen. Ze verschijnen als gewone bureaubladmeldingen, dus er springt nooit iets voor wat je aan het doen bent, en alles stel je in vanuit het paneel — er is geen apart instellingenvenster om te zoeken.</p>
+    <ul>
+      <li xml:lang="nl">Zes herinneringen, elk met het interval dat je kiest</li>
+      <li xml:lang="nl">Zet alles stil voor een half uur, een uur, of tot je anders zegt</li>
+      <li xml:lang="nl">Stil zolang Niet storen aanstaat</li>
+      <li xml:lang="nl">Er komt niets in één keer binnen nadat je computer uit de slaapstand ontwaakt</li>
+    </ul>
+    <p xml:lang="pl">Pause to małe przypomnienie, by zadbać o siebie podczas pracy. Siedzi w panelu COSMIC i od czasu do czasu przypomina, żeby dać odpocząć oczom, napić się wody, wziąć głęboki oddech, wstać i się poruszać, wyprostować plecy i rozluźnić nadgarstki.</p>
+    <p xml:lang="pl">Przypomnień jest sześć i każde ustawiasz po swojemu: wybierz, jak często ma się pojawiać, albo wyłącz je całkiem i zostaw tylko te, które pomagają. Pojawiają się jako zwykłe powiadomienia, więc nigdy nie wskakują przed to, co właśnie robisz, a wszystko ustawisz prosto z panelu — nie ma osobnego okna ustawień, którego trzeba szukać.</p>
+    <ul>
+      <li xml:lang="pl">Sześć przypomnień, każde w wybranym przez ciebie odstępie</li>
+      <li xml:lang="pl">Wstrzymaj wszystko na pół godziny, godzinę albo do odwołania</li>
+      <li xml:lang="pl">Cisza, dopóki włączony jest tryb Nie przeszkadzać</li>
+      <li xml:lang="pl">Po wybudzeniu komputera nic nie przychodzi naraz</li>
+    </ul>
+    <p xml:lang="pt-BR">O Pause é um lembrete gentil para você cuidar de si enquanto trabalha. Ele fica no painel do COSMIC e, de tempos em tempos, lembra você de descansar os olhos, beber água, respirar fundo, levantar e se mexer, endireitar as costas e relaxar os punhos.</p>
+    <p xml:lang="pt-BR">São seis lembretes e cada um é seu para ajustar: escolha de quanto em quanto tempo ele deve aparecer, ou desligue-o de vez e fique só com os que ajudam. Eles chegam como notificações comuns do sistema, então nada nunca aparece na frente do que você está fazendo, e tudo se configura no próprio painel — não há uma janela de configurações separada para procurar.</p>
+    <ul>
+      <li xml:lang="pt-BR">Seis lembretes, cada um no intervalo que você escolher</li>
+      <li xml:lang="pt-BR">Pause tudo por meia hora, uma hora ou até você mandar voltar</li>
+      <li xml:lang="pt-BR">Em silêncio enquanto o Não perturbe estiver ligado</li>
+      <li xml:lang="pt-BR">Nada chega de uma vez quando o computador acorda da suspensão</li>
+    </ul>
+    <p xml:lang="ru">Pause — небольшое напоминание позаботиться о себе во время работы. Он живёт в панели COSMIC и время от времени напоминает дать отдых глазам, выпить воды, глубоко вдохнуть, встать и размяться, выпрямить спину и расслабить запястья.</p>
+    <p xml:lang="ru">Напоминаний шесть, и каждое настраиваете вы сами: выберите, как часто оно должно приходить, или выключите его совсем и оставьте только те, что вам помогают. Они приходят обычными уведомлениями, поэтому никогда не лезут вперёд того, чем вы заняты, а настраивается всё прямо в панели — отдельного окна настроек искать не нужно.</p>
+    <ul>
+      <li xml:lang="ru">Шесть напоминаний, каждое с выбранным вами интервалом</li>
+      <li xml:lang="ru">Поставьте всё на паузу на полчаса, на час или до особого распоряжения</li>
+      <li xml:lang="ru">Тишина, пока включён режим «Не беспокоить»</li>
+      <li xml:lang="ru">После пробуждения компьютера ничего не приходит разом</li>
+    </ul>
+    <p xml:lang="uk">Pause — невелике нагадування подбати про себе під час роботи. Він живе на панелі COSMIC і час від часу нагадує дати відпочинок очам, випити води, глибоко вдихнути, встати й розім’ятися, випрямити спину та розслабити зап’ястя.</p>
+    <p xml:lang="uk">Нагадувань шість, і кожне ви налаштовуєте самі: оберіть, як часто воно має приходити, або вимкніть його зовсім і залиште лише ті, що допомагають. Вони приходять звичайними сповіщеннями, тож ніколи не лізуть поперед того, чим ви зайняті, а налаштовується все просто на панелі — окремого вікна налаштувань шукати не треба.</p>
+    <ul>
+      <li xml:lang="uk">Шість нагадувань, кожне з обраним вами інтервалом</li>
+      <li xml:lang="uk">Поставте все на паузу на пів години, на годину або до відміни</li>
+      <li xml:lang="uk">Тиша, доки увімкнено режим «Не турбувати»</li>
+      <li xml:lang="uk">Після пробудження комп’ютера нічого не приходить одразу гуртом</li>
+    </ul>
+    <p xml:lang="zh-CN">Pause 是一句轻轻的提醒：工作时也别忘了照顾自己。它位于 COSMIC 面板上，会时不时提醒你让眼睛歇一歇、喝点水、深呼吸、起身活动、挺直背脊、放松手腕。</p>
+    <p xml:lang="zh-CN">六项提醒，每一项都由你自己决定：设定它多久出现一次，或者干脆关掉，只留下对你有用的那几项。它们以普通的桌面通知出现，绝不会挡在你正在做的事情前面；所有设置都在面板弹窗里完成，不必再去找单独的设置窗口。</p>
+    <ul>
       <li xml:lang="zh-CN">六项提醒，间隔由你决定</li>
-      <li xml:lang="zh-CN">把一切暂停半小时、一小时，或直到你说停</li>
-      <li xml:lang="zh-CN">从睡眠唤醒后不会涌来一堆提醒</li>
+      <li xml:lang="zh-CN">全部暂停半小时、一小时，或者直到你说继续</li>
+      <li xml:lang="zh-CN">开启“免打扰”期间保持安静</li>
+      <li xml:lang="zh-CN">电脑从睡眠中唤醒后，提醒不会一次涌来</li>
     </ul>
   </description>
 
