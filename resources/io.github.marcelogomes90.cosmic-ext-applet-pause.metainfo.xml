@@ -298,6 +298,14 @@
   </keywords>
 
   <releases>
+    <release type="stable" version="1.1.4" date="2026-10-01">
+      <description>
+        <p>This patch gives the back button the hover it was missing.</p>
+        <ul>
+          <li>Gives the back button the hover and press shading the rest of the popup's buttons have, following the theme's roundness and holding the height of the controls beside it. Its padding no longer follows the interface density, which at the spacious setting had been pushing the label out of the header.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="1.1.3" date="2026-09-22">
       <description>
         <p>This patch fixes two controls that misread the theme, and quiets the system log.</p>
