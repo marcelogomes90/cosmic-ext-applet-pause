@@ -167,7 +167,10 @@ async fn a_follower_promoted_to_leader_takes_over_the_reminders() {
 
     let mut snapshots = handle.subscribe();
     tokio::time::sleep(Duration::from_mins(5)).await;
-    assert!(notifier.delivered().is_empty());
+    assert!(
+        notifier.delivered().is_empty(),
+        "the follower stayed quiet while the leader was alive"
+    );
 
     events.post(Event::Leader(true));
 
@@ -202,7 +205,10 @@ async fn pausing_everything_keeps_the_desktop_quiet() {
 
     tokio::time::sleep(Duration::from_mins(10)).await;
 
-    assert!(notifier.delivered().is_empty());
+    assert!(
+        notifier.delivered().is_empty(),
+        "a pause keeps the desktop quiet"
+    );
 }
 
 #[tokio::test(start_paused = true)]

@@ -652,7 +652,10 @@ mod tests {
     fn storing_the_same_schedule_again_writes_nothing_at_all() {
         let record = Record::default();
 
-        assert!(keys_to_write(Some(&record), &record).is_empty());
+        assert!(
+            keys_to_write(Some(&record), &record).is_empty(),
+            "a record identical to the one on disk has nothing to write"
+        );
     }
 
     #[test]

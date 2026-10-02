@@ -92,9 +92,15 @@ mod tests {
             let request = Fluent.request(kind);
 
             assert_eq!(request.kind, kind);
-            assert!(!request.summary.is_empty());
-            assert!(!request.body.is_empty());
-            assert!(!request.action_label.is_empty());
+            assert!(
+                !request.summary.is_empty(),
+                "{kind:?} left the summary empty"
+            );
+            assert!(!request.body.is_empty(), "{kind:?} left the body empty");
+            assert!(
+                !request.action_label.is_empty(),
+                "{kind:?} left the action label empty"
+            );
             assert_eq!(
                 request.icon,
                 format!("{}-{}-symbolic", crate::APP_ID, kind.key())

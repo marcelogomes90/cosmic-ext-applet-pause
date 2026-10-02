@@ -103,7 +103,7 @@ mod tests {
     fn a_moment_is_rendered_as_a_time_of_day() {
         let rendered = clock(Moment::from_epoch_seconds(1_700_000_000));
 
-        assert!(!rendered.is_empty());
+        assert!(!rendered.is_empty(), "a moment always renders to something");
         assert!(
             rendered.contains(':'),
             "a clock reads as a time: {rendered}"

@@ -488,7 +488,10 @@ mod tests {
             );
         }
 
-        assert!(fired(&schedule.advance(&settings, at(0), Duration::ZERO)).is_empty());
+        assert!(
+            fired(&schedule.advance(&settings, at(0), Duration::ZERO)).is_empty(),
+            "nothing is owed at the moment the timers start"
+        );
     }
 
     #[test]
@@ -580,7 +583,10 @@ mod tests {
         schedule.done(ReminderKind::Eyes);
 
         let within = resumed.saturating_add(Duration::from_secs(30));
-        assert!(fired(&schedule.advance(&settings, within, Duration::ZERO)).is_empty());
+        assert!(
+            fired(&schedule.advance(&settings, within, Duration::ZERO)).is_empty(),
+            "the settle window holds everything back"
+        );
     }
 
     #[test]
@@ -645,7 +651,7 @@ mod tests {
         );
 
         let effects = schedule.advance(&settings, late, Duration::ZERO);
-        assert!(fired(&effects).is_empty());
+        assert!(fired(&effects).is_empty(), "the backlog was never built up");
     }
 
     #[test]
@@ -780,7 +786,10 @@ mod tests {
         let mut restarted = Schedule::from_record(schedule.record());
         restarted.start(&settings, morning);
 
-        assert!(fired(&restarted.advance(&settings, morning, Duration::ZERO)).is_empty());
+        assert!(
+            fired(&restarted.advance(&settings, morning, Duration::ZERO)).is_empty(),
+            "a night away owes nothing in the morning"
+        );
 
         for kind in ReminderKind::ALL {
             assert_eq!(
@@ -852,7 +861,10 @@ mod tests {
         let settings = only(&[]);
         let mut schedule = started(&settings);
 
-        assert!(fired(&schedule.advance(&settings, at(10 * 60 * 60), Duration::ZERO)).is_empty());
+        assert!(
+            fired(&schedule.advance(&settings, at(10 * 60 * 60), Duration::ZERO)).is_empty(),
+            "a reminder switched off stays silent however long it waits"
+        );
     }
 
     #[test]
